@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>D&D.SCP Evaluator</title>
+</head>
+<body>
+  
+<p>Testing Testing.  This is the scp_dev.html file.</p>
+  <div id="SCP-111">SCP-111:</div>
+  <div id="output_text"></div>
+  <button onclick="set_infiltration(111)">Infiltration</button>
+  <button onclick="set_legal(111)">Legal</button>
+  <button onclick="set_paramilitary(111)">Paramilitary</button>
+  <button onclick="set_none(111)">None</button>
+  
+  <br>
+  <div id="output_text"></div>
+  <br>
+</body>
+
+<script id="jsbin-javascript">
+function set_infiltration(id_number){
+ element_name = "SCP-" + id_number
+ document.getElementById(element_name).innerHTML = document.getElementById(element_name).innerHTML + " (INFILTRATION)"
+}
+function set_infilitration(id_number){
+ element_name = "SCP-" + id_number
+ document.getElementById(element_name).innerHTML = document.getElementById(element_name).innerHTML + " (INFILTRATION)"
+}
+function set_legal(id_number){
+ element_name = "SCP-" + id_number
+ document.getElementById(element_name).innerHTML = document.getElementById(element_name).innerHTML + " (INFILTRATION)"
+}
+function set_paramilitary(id_number){
+ element_name = "SCP-" + id_number
+ document.getElementById(element_name).innerHTML = document.getElementById(element_name).innerHTML + " (INFILTRATION)"
+}
+function set_none(id_number){
+ element_name = "SCP-" + id_number
+ document.getElementById(element_name).innerHTML = document.getElementById(element_name).innerHTML + " (INFILTRATION)"
+}
+
+</script>
+    
+</html>
