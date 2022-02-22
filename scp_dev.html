@@ -6,19 +6,804 @@
   <title>D&D.SCP Evaluator</title>
 </head>
 <body>
-  
-<p>Testing Testing.  This is the scp_dev.html file.</p>
-  <div>Here is a button that should do a thing:</div>
-  <button onclick="do_think()">Do Thing</button>
+<div id="input">
+    <div id="SCP-537">SCP-537:
+    <button id="537-infiltration" onclick="set_infiltration(537)">Infiltration</button>
+    <button id="537-legal" onclick="set_legal(537)">Legal</button>
+    <button id="537-paramilitary" onclick="set_paramilitary(537)">Paramilitary</button>
+    <button id="537-none" style="visibility:hidden;" onclick="set_none(537)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-1282">SCP-1282:
+    <button id="1282-infiltration" onclick="set_infiltration(1282)">Infiltration</button>
+    <button id="1282-legal" onclick="set_legal(1282)">Legal</button>
+    <button id="1282-paramilitary" onclick="set_paramilitary(1282)">Paramilitary</button>
+    <button id="1282-none" style="visibility:hidden;" onclick="set_none(1282)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-1466">SCP-1466:
+    <button id="1466-infiltration" onclick="set_infiltration(1466)">Infiltration</button>
+    <button id="1466-legal" onclick="set_legal(1466)">Legal</button>
+    <button id="1466-paramilitary" onclick="set_paramilitary(1466)">Paramilitary</button>
+    <button id="1466-none" style="visibility:hidden;" onclick="set_none(1466)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-1720">SCP-1720:
+    <button id="1720-infiltration" onclick="set_infiltration(1720)">Infiltration</button>
+    <button id="1720-legal" onclick="set_legal(1720)">Legal</button>
+    <button id="1720-paramilitary" onclick="set_paramilitary(1720)">Paramilitary</button>
+    <button id="1720-none" style="visibility:hidden;" onclick="set_none(1720)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-1785">SCP-1785:
+    <button id="1785-infiltration" onclick="set_infiltration(1785)">Infiltration</button>
+    <button id="1785-legal" onclick="set_legal(1785)">Legal</button>
+    <button id="1785-paramilitary" onclick="set_paramilitary(1785)">Paramilitary</button>
+    <button id="1785-none" style="visibility:hidden;" onclick="set_none(1785)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-1838">SCP-1838:
+    <button id="1838-infiltration" onclick="set_infiltration(1838)">Infiltration</button>
+    <button id="1838-legal" onclick="set_legal(1838)">Legal</button>
+    <button id="1838-paramilitary" onclick="set_paramilitary(1838)">Paramilitary</button>
+    <button id="1838-none" style="visibility:hidden;" onclick="set_none(1838)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-1970">SCP-1970:
+    <button id="1970-infiltration" onclick="set_infiltration(1970)">Infiltration</button>
+    <button id="1970-legal" onclick="set_legal(1970)">Legal</button>
+    <button id="1970-paramilitary" onclick="set_paramilitary(1970)">Paramilitary</button>
+    <button id="1970-none" style="visibility:hidden;" onclick="set_none(1970)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2116">SCP-2116:
+    <button id="2116-infiltration" onclick="set_infiltration(2116)">Infiltration</button>
+    <button id="2116-legal" onclick="set_legal(2116)">Legal</button>
+    <button id="2116-paramilitary" onclick="set_paramilitary(2116)">Paramilitary</button>
+    <button id="2116-none" style="visibility:hidden;" onclick="set_none(2116)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2122">SCP-2122:
+    <button id="2122-infiltration" onclick="set_infiltration(2122)">Infiltration</button>
+    <button id="2122-legal" onclick="set_legal(2122)">Legal</button>
+    <button id="2122-paramilitary" onclick="set_paramilitary(2122)">Paramilitary</button>
+    <button id="2122-none" style="visibility:hidden;" onclick="set_none(2122)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2178">SCP-2178:
+    <button id="2178-infiltration" onclick="set_infiltration(2178)">Infiltration</button>
+    <button id="2178-legal" onclick="set_legal(2178)">Legal</button>
+    <button id="2178-paramilitary" onclick="set_paramilitary(2178)">Paramilitary</button>
+    <button id="2178-none" style="visibility:hidden;" onclick="set_none(2178)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2253">SCP-2253:
+    <button id="2253-infiltration" onclick="set_infiltration(2253)">Infiltration</button>
+    <button id="2253-legal" onclick="set_legal(2253)">Legal</button>
+    <button id="2253-paramilitary" onclick="set_paramilitary(2253)">Paramilitary</button>
+    <button id="2253-none" style="visibility:hidden;" onclick="set_none(2253)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2325">SCP-2325:
+    <button id="2325-infiltration" onclick="set_infiltration(2325)">Infiltration</button>
+    <button id="2325-legal" onclick="set_legal(2325)">Legal</button>
+    <button id="2325-paramilitary" onclick="set_paramilitary(2325)">Paramilitary</button>
+    <button id="2325-none" style="visibility:hidden;" onclick="set_none(2325)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2603">SCP-2603:
+    <button id="2603-infiltration" onclick="set_infiltration(2603)">Infiltration</button>
+    <button id="2603-legal" onclick="set_legal(2603)">Legal</button>
+    <button id="2603-paramilitary" onclick="set_paramilitary(2603)">Paramilitary</button>
+    <button id="2603-none" style="visibility:hidden;" onclick="set_none(2603)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2626">SCP-2626:
+    <button id="2626-infiltration" onclick="set_infiltration(2626)">Infiltration</button>
+    <button id="2626-legal" onclick="set_legal(2626)">Legal</button>
+    <button id="2626-paramilitary" onclick="set_paramilitary(2626)">Paramilitary</button>
+    <button id="2626-none" style="visibility:hidden;" onclick="set_none(2626)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2628">SCP-2628:
+    <button id="2628-infiltration" onclick="set_infiltration(2628)">Infiltration</button>
+    <button id="2628-legal" onclick="set_legal(2628)">Legal</button>
+    <button id="2628-paramilitary" onclick="set_paramilitary(2628)">Paramilitary</button>
+    <button id="2628-none" style="visibility:hidden;" onclick="set_none(2628)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2699">SCP-2699:
+    <button id="2699-infiltration" onclick="set_infiltration(2699)">Infiltration</button>
+    <button id="2699-legal" onclick="set_legal(2699)">Legal</button>
+    <button id="2699-paramilitary" onclick="set_paramilitary(2699)">Paramilitary</button>
+    <button id="2699-none" style="visibility:hidden;" onclick="set_none(2699)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2719">SCP-2719:
+    <button id="2719-infiltration" onclick="set_infiltration(2719)">Infiltration</button>
+    <button id="2719-legal" onclick="set_legal(2719)">Legal</button>
+    <button id="2719-paramilitary" onclick="set_paramilitary(2719)">Paramilitary</button>
+    <button id="2719-none" style="visibility:hidden;" onclick="set_none(2719)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2720">SCP-2720:
+    <button id="2720-infiltration" onclick="set_infiltration(2720)">Infiltration</button>
+    <button id="2720-legal" onclick="set_legal(2720)">Legal</button>
+    <button id="2720-paramilitary" onclick="set_paramilitary(2720)">Paramilitary</button>
+    <button id="2720-none" style="visibility:hidden;" onclick="set_none(2720)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2797">SCP-2797:
+    <button id="2797-infiltration" onclick="set_infiltration(2797)">Infiltration</button>
+    <button id="2797-legal" onclick="set_legal(2797)">Legal</button>
+    <button id="2797-paramilitary" onclick="set_paramilitary(2797)">Paramilitary</button>
+    <button id="2797-none" style="visibility:hidden;" onclick="set_none(2797)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2883">SCP-2883:
+    <button id="2883-infiltration" onclick="set_infiltration(2883)">Infiltration</button>
+    <button id="2883-legal" onclick="set_legal(2883)">Legal</button>
+    <button id="2883-paramilitary" onclick="set_paramilitary(2883)">Paramilitary</button>
+    <button id="2883-none" style="visibility:hidden;" onclick="set_none(2883)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2898">SCP-2898:
+    <button id="2898-infiltration" onclick="set_infiltration(2898)">Infiltration</button>
+    <button id="2898-legal" onclick="set_legal(2898)">Legal</button>
+    <button id="2898-paramilitary" onclick="set_paramilitary(2898)">Paramilitary</button>
+    <button id="2898-none" style="visibility:hidden;" onclick="set_none(2898)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2942">SCP-2942:
+    <button id="2942-infiltration" onclick="set_infiltration(2942)">Infiltration</button>
+    <button id="2942-legal" onclick="set_legal(2942)">Legal</button>
+    <button id="2942-paramilitary" onclick="set_paramilitary(2942)">Paramilitary</button>
+    <button id="2942-none" style="visibility:hidden;" onclick="set_none(2942)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-2964">SCP-2964:
+    <button id="2964-infiltration" onclick="set_infiltration(2964)">Infiltration</button>
+    <button id="2964-legal" onclick="set_legal(2964)">Legal</button>
+    <button id="2964-paramilitary" onclick="set_paramilitary(2964)">Paramilitary</button>
+    <button id="2964-none" style="visibility:hidden;" onclick="set_none(2964)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3212">SCP-3212:
+    <button id="3212-infiltration" onclick="set_infiltration(3212)">Infiltration</button>
+    <button id="3212-legal" onclick="set_legal(3212)">Legal</button>
+    <button id="3212-paramilitary" onclick="set_paramilitary(3212)">Paramilitary</button>
+    <button id="3212-none" style="visibility:hidden;" onclick="set_none(3212)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3273">SCP-3273:
+    <button id="3273-infiltration" onclick="set_infiltration(3273)">Infiltration</button>
+    <button id="3273-legal" onclick="set_legal(3273)">Legal</button>
+    <button id="3273-paramilitary" onclick="set_paramilitary(3273)">Paramilitary</button>
+    <button id="3273-none" style="visibility:hidden;" onclick="set_none(3273)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3279">SCP-3279:
+    <button id="3279-infiltration" onclick="set_infiltration(3279)">Infiltration</button>
+    <button id="3279-legal" onclick="set_legal(3279)">Legal</button>
+    <button id="3279-paramilitary" onclick="set_paramilitary(3279)">Paramilitary</button>
+    <button id="3279-none" style="visibility:hidden;" onclick="set_none(3279)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3339">SCP-3339:
+    <button id="3339-infiltration" onclick="set_infiltration(3339)">Infiltration</button>
+    <button id="3339-legal" onclick="set_legal(3339)">Legal</button>
+    <button id="3339-paramilitary" onclick="set_paramilitary(3339)">Paramilitary</button>
+    <button id="3339-none" style="visibility:hidden;" onclick="set_none(3339)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3440">SCP-3440:
+    <button id="3440-infiltration" onclick="set_infiltration(3440)">Infiltration</button>
+    <button id="3440-legal" onclick="set_legal(3440)">Legal</button>
+    <button id="3440-paramilitary" onclick="set_paramilitary(3440)">Paramilitary</button>
+    <button id="3440-none" style="visibility:hidden;" onclick="set_none(3440)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3577">SCP-3577:
+    <button id="3577-infiltration" onclick="set_infiltration(3577)">Infiltration</button>
+    <button id="3577-legal" onclick="set_legal(3577)">Legal</button>
+    <button id="3577-paramilitary" onclick="set_paramilitary(3577)">Paramilitary</button>
+    <button id="3577-none" style="visibility:hidden;" onclick="set_none(3577)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3597">SCP-3597:
+    <button id="3597-infiltration" onclick="set_infiltration(3597)">Infiltration</button>
+    <button id="3597-legal" onclick="set_legal(3597)">Legal</button>
+    <button id="3597-paramilitary" onclick="set_paramilitary(3597)">Paramilitary</button>
+    <button id="3597-none" style="visibility:hidden;" onclick="set_none(3597)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3656">SCP-3656:
+    <button id="3656-infiltration" onclick="set_infiltration(3656)">Infiltration</button>
+    <button id="3656-legal" onclick="set_legal(3656)">Legal</button>
+    <button id="3656-paramilitary" onclick="set_paramilitary(3656)">Paramilitary</button>
+    <button id="3656-none" style="visibility:hidden;" onclick="set_none(3656)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3668">SCP-3668:
+    <button id="3668-infiltration" onclick="set_infiltration(3668)">Infiltration</button>
+    <button id="3668-legal" onclick="set_legal(3668)">Legal</button>
+    <button id="3668-paramilitary" onclick="set_paramilitary(3668)">Paramilitary</button>
+    <button id="3668-none" style="visibility:hidden;" onclick="set_none(3668)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3699">SCP-3699:
+    <button id="3699-infiltration" onclick="set_infiltration(3699)">Infiltration</button>
+    <button id="3699-legal" onclick="set_legal(3699)">Legal</button>
+    <button id="3699-paramilitary" onclick="set_paramilitary(3699)">Paramilitary</button>
+    <button id="3699-none" style="visibility:hidden;" onclick="set_none(3699)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3781">SCP-3781:
+    <button id="3781-infiltration" onclick="set_infiltration(3781)">Infiltration</button>
+    <button id="3781-legal" onclick="set_legal(3781)">Legal</button>
+    <button id="3781-paramilitary" onclick="set_paramilitary(3781)">Paramilitary</button>
+    <button id="3781-none" style="visibility:hidden;" onclick="set_none(3781)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3850">SCP-3850:
+    <button id="3850-infiltration" onclick="set_infiltration(3850)">Infiltration</button>
+    <button id="3850-legal" onclick="set_legal(3850)">Legal</button>
+    <button id="3850-paramilitary" onclick="set_paramilitary(3850)">Paramilitary</button>
+    <button id="3850-none" style="visibility:hidden;" onclick="set_none(3850)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-3936">SCP-3936:
+    <button id="3936-infiltration" onclick="set_infiltration(3936)">Infiltration</button>
+    <button id="3936-legal" onclick="set_legal(3936)">Legal</button>
+    <button id="3936-paramilitary" onclick="set_paramilitary(3936)">Paramilitary</button>
+    <button id="3936-none" style="visibility:hidden;" onclick="set_none(3936)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4004">SCP-4004:
+    <button id="4004-infiltration" onclick="set_infiltration(4004)">Infiltration</button>
+    <button id="4004-legal" onclick="set_legal(4004)">Legal</button>
+    <button id="4004-paramilitary" onclick="set_paramilitary(4004)">Paramilitary</button>
+    <button id="4004-none" style="visibility:hidden;" onclick="set_none(4004)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4026">SCP-4026:
+    <button id="4026-infiltration" onclick="set_infiltration(4026)">Infiltration</button>
+    <button id="4026-legal" onclick="set_legal(4026)">Legal</button>
+    <button id="4026-paramilitary" onclick="set_paramilitary(4026)">Paramilitary</button>
+    <button id="4026-none" style="visibility:hidden;" onclick="set_none(4026)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4027">SCP-4027:
+    <button id="4027-infiltration" onclick="set_infiltration(4027)">Infiltration</button>
+    <button id="4027-legal" onclick="set_legal(4027)">Legal</button>
+    <button id="4027-paramilitary" onclick="set_paramilitary(4027)">Paramilitary</button>
+    <button id="4027-none" style="visibility:hidden;" onclick="set_none(4027)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4036">SCP-4036:
+    <button id="4036-infiltration" onclick="set_infiltration(4036)">Infiltration</button>
+    <button id="4036-legal" onclick="set_legal(4036)">Legal</button>
+    <button id="4036-paramilitary" onclick="set_paramilitary(4036)">Paramilitary</button>
+    <button id="4036-none" style="visibility:hidden;" onclick="set_none(4036)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4222">SCP-4222:
+    <button id="4222-infiltration" onclick="set_infiltration(4222)">Infiltration</button>
+    <button id="4222-legal" onclick="set_legal(4222)">Legal</button>
+    <button id="4222-paramilitary" onclick="set_paramilitary(4222)">Paramilitary</button>
+    <button id="4222-none" style="visibility:hidden;" onclick="set_none(4222)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4271">SCP-4271:
+    <button id="4271-infiltration" onclick="set_infiltration(4271)">Infiltration</button>
+    <button id="4271-legal" onclick="set_legal(4271)">Legal</button>
+    <button id="4271-paramilitary" onclick="set_paramilitary(4271)">Paramilitary</button>
+    <button id="4271-none" style="visibility:hidden;" onclick="set_none(4271)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4370">SCP-4370:
+    <button id="4370-infiltration" onclick="set_infiltration(4370)">Infiltration</button>
+    <button id="4370-legal" onclick="set_legal(4370)">Legal</button>
+    <button id="4370-paramilitary" onclick="set_paramilitary(4370)">Paramilitary</button>
+    <button id="4370-none" style="visibility:hidden;" onclick="set_none(4370)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4390">SCP-4390:
+    <button id="4390-infiltration" onclick="set_infiltration(4390)">Infiltration</button>
+    <button id="4390-legal" onclick="set_legal(4390)">Legal</button>
+    <button id="4390-paramilitary" onclick="set_paramilitary(4390)">Paramilitary</button>
+    <button id="4390-none" style="visibility:hidden;" onclick="set_none(4390)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4412">SCP-4412:
+    <button id="4412-infiltration" onclick="set_infiltration(4412)">Infiltration</button>
+    <button id="4412-legal" onclick="set_legal(4412)">Legal</button>
+    <button id="4412-paramilitary" onclick="set_paramilitary(4412)">Paramilitary</button>
+    <button id="4412-none" style="visibility:hidden;" onclick="set_none(4412)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4424">SCP-4424:
+    <button id="4424-infiltration" onclick="set_infiltration(4424)">Infiltration</button>
+    <button id="4424-legal" onclick="set_legal(4424)">Legal</button>
+    <button id="4424-paramilitary" onclick="set_paramilitary(4424)">Paramilitary</button>
+    <button id="4424-none" style="visibility:hidden;" onclick="set_none(4424)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4449">SCP-4449:
+    <button id="4449-infiltration" onclick="set_infiltration(4449)">Infiltration</button>
+    <button id="4449-legal" onclick="set_legal(4449)">Legal</button>
+    <button id="4449-paramilitary" onclick="set_paramilitary(4449)">Paramilitary</button>
+    <button id="4449-none" style="visibility:hidden;" onclick="set_none(4449)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4550">SCP-4550:
+    <button id="4550-infiltration" onclick="set_infiltration(4550)">Infiltration</button>
+    <button id="4550-legal" onclick="set_legal(4550)">Legal</button>
+    <button id="4550-paramilitary" onclick="set_paramilitary(4550)">Paramilitary</button>
+    <button id="4550-none" style="visibility:hidden;" onclick="set_none(4550)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4565">SCP-4565:
+    <button id="4565-infiltration" onclick="set_infiltration(4565)">Infiltration</button>
+    <button id="4565-legal" onclick="set_legal(4565)">Legal</button>
+    <button id="4565-paramilitary" onclick="set_paramilitary(4565)">Paramilitary</button>
+    <button id="4565-none" style="visibility:hidden;" onclick="set_none(4565)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4579">SCP-4579:
+    <button id="4579-infiltration" onclick="set_infiltration(4579)">Infiltration</button>
+    <button id="4579-legal" onclick="set_legal(4579)">Legal</button>
+    <button id="4579-paramilitary" onclick="set_paramilitary(4579)">Paramilitary</button>
+    <button id="4579-none" style="visibility:hidden;" onclick="set_none(4579)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4625">SCP-4625:
+    <button id="4625-infiltration" onclick="set_infiltration(4625)">Infiltration</button>
+    <button id="4625-legal" onclick="set_legal(4625)">Legal</button>
+    <button id="4625-paramilitary" onclick="set_paramilitary(4625)">Paramilitary</button>
+    <button id="4625-none" style="visibility:hidden;" onclick="set_none(4625)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4654">SCP-4654:
+    <button id="4654-infiltration" onclick="set_infiltration(4654)">Infiltration</button>
+    <button id="4654-legal" onclick="set_legal(4654)">Legal</button>
+    <button id="4654-paramilitary" onclick="set_paramilitary(4654)">Paramilitary</button>
+    <button id="4654-none" style="visibility:hidden;" onclick="set_none(4654)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4709">SCP-4709:
+    <button id="4709-infiltration" onclick="set_infiltration(4709)">Infiltration</button>
+    <button id="4709-legal" onclick="set_legal(4709)">Legal</button>
+    <button id="4709-paramilitary" onclick="set_paramilitary(4709)">Paramilitary</button>
+    <button id="4709-none" style="visibility:hidden;" onclick="set_none(4709)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4834">SCP-4834:
+    <button id="4834-infiltration" onclick="set_infiltration(4834)">Infiltration</button>
+    <button id="4834-legal" onclick="set_legal(4834)">Legal</button>
+    <button id="4834-paramilitary" onclick="set_paramilitary(4834)">Paramilitary</button>
+    <button id="4834-none" style="visibility:hidden;" onclick="set_none(4834)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4931">SCP-4931:
+    <button id="4931-infiltration" onclick="set_infiltration(4931)">Infiltration</button>
+    <button id="4931-legal" onclick="set_legal(4931)">Legal</button>
+    <button id="4931-paramilitary" onclick="set_paramilitary(4931)">Paramilitary</button>
+    <button id="4931-none" style="visibility:hidden;" onclick="set_none(4931)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-4957">SCP-4957:
+    <button id="4957-infiltration" onclick="set_infiltration(4957)">Infiltration</button>
+    <button id="4957-legal" onclick="set_legal(4957)">Legal</button>
+    <button id="4957-paramilitary" onclick="set_paramilitary(4957)">Paramilitary</button>
+    <button id="4957-none" style="visibility:hidden;" onclick="set_none(4957)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-5058">SCP-5058:
+    <button id="5058-infiltration" onclick="set_infiltration(5058)">Infiltration</button>
+    <button id="5058-legal" onclick="set_legal(5058)">Legal</button>
+    <button id="5058-paramilitary" onclick="set_paramilitary(5058)">Paramilitary</button>
+    <button id="5058-none" style="visibility:hidden;" onclick="set_none(5058)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-5087">SCP-5087:
+    <button id="5087-infiltration" onclick="set_infiltration(5087)">Infiltration</button>
+    <button id="5087-legal" onclick="set_legal(5087)">Legal</button>
+    <button id="5087-paramilitary" onclick="set_paramilitary(5087)">Paramilitary</button>
+    <button id="5087-none" style="visibility:hidden;" onclick="set_none(5087)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-5117">SCP-5117:
+    <button id="5117-infiltration" onclick="set_infiltration(5117)">Infiltration</button>
+    <button id="5117-legal" onclick="set_legal(5117)">Legal</button>
+    <button id="5117-paramilitary" onclick="set_paramilitary(5117)">Paramilitary</button>
+    <button id="5117-none" style="visibility:hidden;" onclick="set_none(5117)">Withdraw Team</button>
+    </div>
+
+    <div id="SCP-5136">SCP-5136:
+    <button id="5136-infiltration" onclick="set_infiltration(5136)">Infiltration</button>
+    <button id="5136-legal" onclick="set_legal(5136)">Legal</button>
+    <button id="5136-paramilitary" onclick="set_paramilitary(5136)">Paramilitary</button>
+    <button id="5136-none" style="visibility:hidden;" onclick="set_none(5136)">Withdraw Team</button>
+    </div>
+
+
   <br>
+  <button onclick="calculate()">Calculate</button>
+</div>
+
+  <div id="detail_text"></div>
   <div id="output_text"></div>
+  <div id="story_text"></div>
   <br>
+  <br>
+  <button id="reset_button" style="visibility:hidden;" onclick="reset()">Reset</button>
 </body>
 
 <script id="jsbin-javascript">
-function do_thing(){
- document.getElementById("output_text").innerHTML = "A thing has been done!"
+
+var infiltration_targets = []
+var legal_targets = []
+var paramilitary_targets = []
+var Safe = "Safe"
+var Euclid = "Euclid"
+var Keter = "Keter"
+var keter_profits = 0
+var scp_info = {
+"537" : {EV_if_stolen : 0.0, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.010099691790812012, Spacetime : 0.8955512902057507, Anart : 0.03938523130339012, Villain : 0.05496378670004715, Danger_class : Safe},
+"1282" : {EV_if_stolen : 24117728.7, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0, Creator : 0.0009698903154492222, Spacetime : 0.8288734505798678, Anart : 0.16842981567673054, Villain : 0.0017268434279523422, Danger_class : Euclid},
+"1466" : {EV_if_stolen : 15786165.1, Infiltration : 0.6, Legal : 0, Paramilitary : 0.9, Creator : 0.41298719118518973, Spacetime : 0.1423072935268501, Anart : 0.01685121863883001, Villain : 0.42785429664913033, Danger_class : Euclid},
+"1720" : {EV_if_stolen : 22218911.5, Infiltration : 0.6, Legal : 0.6, Paramilitary : 0.9, Creator : 0.1541060248178375, Spacetime : 0.27605572748918594, Anart : 0.5190101099113115, Villain : 0.05082813778166513, Danger_class : Safe},
+"1785" : {EV_if_stolen : -8732327.2, Infiltration : 0, Legal : 0.9, Paramilitary : 0.6, Creator : 0.03991725189586421, Spacetime : 0.0012226402504753565, Anart : 0.9476384085379363, Villain : 0.01122169931572402, Danger_class : Euclid},
+"1838" : {EV_if_stolen : -45572670.1, Infiltration : 0, Legal : 0.6, Paramilitary : 0.9, Creator : 0.1015550623142894, Spacetime : 0.0036850874099517176, Anart : 0.03422711915924998, Villain : 0.8605327311165089, Danger_class : Keter},
+"1970" : {EV_if_stolen : 22325050.0, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.6135089767062221, Spacetime : 0.005631090839861079, Anart : 0.19824238819157927, Villain : 0.1826175442623375, Danger_class : Euclid},
+"2116" : {EV_if_stolen : -51169709.5, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.0015561604414004125, Spacetime : 0.12438436625521582, Anart : 0.003769212673482807, Villain : 0.8702902606299009, Danger_class : Keter},
+"2122" : {EV_if_stolen : 10297979.9, Infiltration : 0, Legal : 0.9, Paramilitary : 0, Creator : 0.023159511804290073, Spacetime : 0.00442833169357376, Anart : 0.9721372825040531, Villain : 0.00027487399808297604, Danger_class : Safe},
+"2178" : {EV_if_stolen : -52372606.2, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.002250822899398938, Spacetime : 0.1005373504079626, Anart : 0.008658694946598515, Villain : 0.8885531317460399, Danger_class : Keter},
+"2253" : {EV_if_stolen : 23062316.8, Infiltration : 0.6, Legal : 0, Paramilitary : 0.9, Creator : 0.8917983075584972, Spacetime : 0.04015032919961691, Anart : 0.0010824298263138767, Villain : 0.06696893341557203, Danger_class : Safe},
+"2325" : {EV_if_stolen : 29932760.3, Infiltration : 0, Legal : 0.6, Paramilitary : 0.6, Creator : 0.7472772950933919, Spacetime : 0.007629544084773651, Anart : 0.08753494890730555, Villain : 0.15755821191452904, Danger_class : Euclid},
+"2603" : {EV_if_stolen : -32641407.6, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.14838808809015616, Spacetime : 0.1338998069422262, Anart : 0.02738852024062986, Villain : 0.6903235847269878, Danger_class : Keter},
+"2626" : {EV_if_stolen : -43490640.8, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.11475304028871659, Spacetime : 0.02058865228174933, Anart : 0.0003324713254810258, Villain : 0.8643258361040531, Danger_class : Keter},
+"2628" : {EV_if_stolen : 23930163.4, Infiltration : 0.9, Legal : 0, Paramilitary : 0.6, Creator : 0.6611990699894651, Spacetime : 0.05027874194968278, Anart : 0.00014747031399337784, Villain : 0.2883747177468589, Danger_class : Keter},
+"2699" : {EV_if_stolen : -13487320.7, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.010824232927029824, Spacetime : 0.03630138617518574, Anart : 0.012229562083559627, Villain : 0.9406448188142247, Danger_class : Euclid},
+"2719" : {EV_if_stolen : 33434028.7, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.8102402617758622, Spacetime : 0.0037183942610488196, Anart : 0.06545298056018985, Villain : 0.12058836340289919, Danger_class : Euclid},
+"2720" : {EV_if_stolen : 39061270.6, Infiltration : 0.6, Legal : 0, Paramilitary : 0.6, Creator : 0.8096609846209923, Spacetime : 0.001865698407460159, Anart : 0.0015249186152470305, Villain : 0.18694839835630062, Danger_class : Keter},
+"2797" : {EV_if_stolen : 54024617.2, Infiltration : 0.6, Legal : 0, Paramilitary : 0.6, Creator : 0.9343921248098525, Spacetime : 0.0014354105667382941, Anart : 0.00024699476839784237, Villain : 0.06392546985501145, Danger_class : Keter},
+"2883" : {EV_if_stolen : -2297494.7, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.09602988092678723, Spacetime : 0.08725959575775419, Anart : 0.744720367152974, Villain : 0.07199015616248461, Danger_class : Euclid},
+"2898" : {EV_if_stolen : -27227168.6, Infiltration : 0.6, Legal : 0, Paramilitary : 0.9, Creator : 0.0004914152377933474, Spacetime : 0.5493668322970323, Anart : 1.2563922948750266e-05, Villain : 0.45012918854222567, Danger_class : Keter},
+"2942" : {EV_if_stolen : 17477680.9, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0, Creator : 0.0023641087373949777, Spacetime : 0.6734599900962308, Anart : 0.29170506240395255, Villain : 0.03247083876242172, Danger_class : Euclid},
+"2964" : {EV_if_stolen : -28137838.7, Infiltration : 0.6, Legal : 0, Paramilitary : 0.6, Creator : 0.014826591671947664, Spacetime : 0.5022745854898383, Anart : 0.0027645215232008666, Villain : 0.4801343013150131, Danger_class : Keter},
+"3212" : {EV_if_stolen : 23394954.3, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.9687436540346227, Spacetime : 0.0029214574800904597, Anart : 0.009539793286232154, Villain : 0.018795095199054746, Danger_class : Safe},
+"3273" : {EV_if_stolen : 49308548.8, Infiltration : 0.6, Legal : 0.6, Paramilitary : 0, Creator : 0.0004416459025613801, Spacetime : 0.9920850067975427, Anart : 0.007012071004955382, Villain : 0.0004612762949404684, Danger_class : Safe},
+"3279" : {EV_if_stolen : -54091615.9, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 3.887982652533503e-05, Spacetime : 0.0769149830131486, Anart : 0.0004906843241038494, Villain : 0.9225554528362222, Danger_class : Keter},
+"3339" : {EV_if_stolen : 19487002.4, Infiltration : 0.6, Legal : 0.6, Paramilitary : 0.9, Creator : 0.6894139297423929, Spacetime : 0.012474467152602305, Anart : 0.25798457758975035, Villain : 0.04012702551525446, Danger_class : Safe},
+"3440" : {EV_if_stolen : 43383387.4, Infiltration : 0.6, Legal : 0.6, Paramilitary : 0.9, Creator : 0.0032028360816175835, Spacetime : 0.851997480107127, Anart : 0.11865433162554927, Villain : 0.026145352185706173, Danger_class : Safe},
+"3577" : {EV_if_stolen : -52243898.4, Infiltration : 0, Legal : 0.6, Paramilitary : 0.9, Creator : 0.0003642787137861859, Spacetime : 0.10859662877072386, Anart : 0.001241792911545582, Villain : 0.8897972996039444, Danger_class : Keter},
+"3597" : {EV_if_stolen : 18766849.5, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.30333498095276684, Spacetime : 0.1358437461137826, Anart : 0.5107974266104696, Villain : 0.05002384632298101, Danger_class : Safe},
+"3656" : {EV_if_stolen : 4727784.6, Infiltration : 0.6, Legal : 0, Paramilitary : 0.9, Creator : 0.4593706915523363, Spacetime : 0.13972542617263659, Anart : 0.00020491117788068734, Villain : 0.40069897109714636, Danger_class : Keter},
+"3668" : {EV_if_stolen : 39624819.2, Infiltration : 0.9, Legal : 0, Paramilitary : 0.6, Creator : 0.7871065107317624, Spacetime : 0.059852965523118556, Anart : 0.00046813876809473625, Villain : 0.1525723849770243, Danger_class : Keter},
+"3699" : {EV_if_stolen : 18667704.7, Infiltration : 0, Legal : 0.6, Paramilitary : 0.6, Creator : 0.6313792983598262, Spacetime : 9.627278703124244e-05, Anart : 0.36163396396276226, Villain : 0.006890464890380256, Danger_class : Safe},
+"3781" : {EV_if_stolen : -36073419.4, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.11841503778175894, Spacetime : 0.14247101100101295, Anart : 0.0046013236050537615, Villain : 0.7345126276121743, Danger_class : Keter},
+"3850" : {EV_if_stolen : 18667704.7, Infiltration : 0, Legal : 0.9, Paramilitary : 0.6, Creator : 0.6313792983598262, Spacetime : 9.627278703124244e-05, Anart : 0.36163396396276226, Villain : 0.006890464890380256, Danger_class : Safe},
+"3936" : {EV_if_stolen : 43543097.3, Infiltration : 0.6, Legal : 0, Paramilitary : 0.6, Creator : 0.9853888041598966, Spacetime : 0.0005716257122039601, Anart : 0.004873583443534504, Villain : 0.009165986684364876, Danger_class : Euclid},
+"4004" : {EV_if_stolen : 40709441.9, Infiltration : 0, Legal : 0.9, Paramilitary : 0.6, Creator : 0.8209561360579125, Spacetime : 0.00033630680488764414, Anart : 0.028934586141648035, Villain : 0.14977297099555184, Danger_class : Keter},
+"4026" : {EV_if_stolen : 39618973.7, Infiltration : 0.6, Legal : 0, Paramilitary : 0.6, Creator : 0.8942692993883488, Spacetime : 0.03423863080081782, Anart : 0.0007856502995472505, Villain : 0.07070641951128617, Danger_class : Euclid},
+"4027" : {EV_if_stolen : 20329256.0, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.01657940737209273, Spacetime : 0.7457289582770388, Anart : 0.006978566227582776, Villain : 0.23071306812328565, Danger_class : Euclid},
+"4036" : {EV_if_stolen : -52150669.5, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.04106000610271697, Spacetime : 0.0221005958415152, Anart : 0.009041127546905116, Villain : 0.9277982705088627, Danger_class : Keter},
+"4222" : {EV_if_stolen : -11075652.8, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0, Creator : 0.03158824896404801, Spacetime : 0.7221024216968558, Anart : 0.18990302759827138, Villain : 0.056406301740824824, Danger_class : Keter},
+"4271" : {EV_if_stolen : 18766849.5, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.30333498095276684, Spacetime : 0.1358437461137826, Anart : 0.5107974266104696, Villain : 0.05002384632298101, Danger_class : Safe},
+"4370" : {EV_if_stolen : 9861878.8, Infiltration : 0, Legal : 0.6, Paramilitary : 0, Creator : 0.002226506865793315, Spacetime : 0.0008514610327775304, Anart : 0.9968985424931034, Villain : 2.348960832571748e-05, Danger_class : Safe},
+"4390" : {EV_if_stolen : 16712125.4, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0, Creator : 0.014868404949276584, Spacetime : 0.16868399238951348, Anart : 0.8155064341948942, Villain : 0.0009411684663156671, Danger_class : Safe},
+"4412" : {EV_if_stolen : -18619237.0, Infiltration : 0.6, Legal : 0.6, Paramilitary : 0.9, Creator : 0.0019528576301967283, Spacetime : 0.6978252510808608, Anart : 0.00041735843214710033, Villain : 0.2998045328567953, Danger_class : Keter},
+"4424" : {EV_if_stolen : -27432010.9, Infiltration : 0.9, Legal : 0, Paramilitary : 0.6, Creator : 0.022132169662472837, Spacetime : 0.499841842241775, Anart : 0.00021719460739621076, Villain : 0.4778087934883559, Danger_class : Keter},
+"4449" : {EV_if_stolen : 46323654.7, Infiltration : 0.6, Legal : 0.6, Paramilitary : 0, Creator : 0.00027220247171666793, Spacetime : 0.9171872401753135, Anart : 0.08211410525560327, Villain : 0.00042645209736657234, Danger_class : Safe},
+"4550" : {EV_if_stolen : -3143393.8, Infiltration : 0, Legal : 0.9, Paramilitary : 0.6, Creator : 0.141025930271969, Spacetime : 0.002159767650852551, Anart : 0.8369914120976674, Villain : 0.01982288997951115, Danger_class : Euclid},
+"4565" : {EV_if_stolen : -2298074.4, Infiltration : 0.6, Legal : 0, Paramilitary : 0, Creator : 0.004565399247043601, Spacetime : 0.9795147627919881, Anart : 0.0017329029280237366, Villain : 0.014186935032944601, Danger_class : Keter},
+"4579" : {EV_if_stolen : -2702705.2, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0, Creator : 0.05634832501906202, Spacetime : 0.8587425870748427, Anart : 0.017829277578890784, Villain : 0.0670798103272045, Danger_class : Keter},
+"4625" : {EV_if_stolen : 12168993.4, Infiltration : 0, Legal : 0.6, Paramilitary : 0.9, Creator : 0.22762210484656795, Spacetime : 0.004099179092510195, Anart : 0.6999062625400576, Villain : 0.06837245352086418, Danger_class : Safe},
+"4654" : {EV_if_stolen : -55884341.9, Infiltration : 0, Legal : 0.9, Paramilitary : 0.6, Creator : 0.01270391464001574, Spacetime : 0.009563677660448954, Anart : 0.037401056399522965, Villain : 0.9403313513000123, Danger_class : Keter},
+"4709" : {EV_if_stolen : 14811151.3, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.11159160463184775, Spacetime : 0.09994905012553622, Anart : 0.7516535586926788, Villain : 0.03680578654993724, Danger_class : Safe},
+"4834" : {EV_if_stolen : 42707064.1, Infiltration : 0.6, Legal : 0, Paramilitary : 0.6, Creator : 0.9717515457482148, Spacetime : 0.0007516196207069094, Anart : 0.0003794317605444994, Villain : 0.027117402870533724, Danger_class : Euclid},
+"4931" : {EV_if_stolen : 21537618.6, Infiltration : 0.9, Legal : 0.6, Paramilitary : 0.6, Creator : 0.5788243339809054, Spacetime : 0.05228852584679373, Anart : 0.017615464324563204, Villain : 0.35127167584773755, Danger_class : Euclid},
+"4957" : {EV_if_stolen : 26128276.6, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.6679463084652066, Spacetime : 0.19941941954685552, Anart : 0.05919897089668031, Villain : 0.07343530109125755, Danger_class : Safe},
+"5058" : {EV_if_stolen : -32641407.6, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.14838808809015616, Spacetime : 0.1338998069422262, Anart : 0.02738852024062986, Villain : 0.6903235847269878, Danger_class : Keter},
+"5087" : {EV_if_stolen : 31294618.0, Infiltration : 0, Legal : 0.6, Paramilitary : 0.6, Creator : 0.7673074864154195, Spacetime : 0.0001186976988981423, Anart : 0.18974931753372445, Villain : 0.04282449835195797, Danger_class : Euclid},
+"5117" : {EV_if_stolen : 37436112.6, Infiltration : 0.6, Legal : 0.9, Paramilitary : 0.6, Creator : 0.877449920753665, Spacetime : 0.00536911482286676, Anart : 0.03979358530136938, Villain : 0.07738737912209896, Danger_class : Euclid},
+"5136" : {EV_if_stolen : 13261964.9, Infiltration : 0, Legal : 0.6, Paramilitary : 0.9, Creator : 0.245997967287434, Spacetime : 0.0001500391918221219, Anart : 0.7514656268102704, Villain : 0.0023863667104734566, Danger_class : Safe},
 }
+
+
+function set_infiltration(id_number){
+ if( infiltration_targets.length >= 3 ) {
+   return 
+ }
+ element_name = "SCP-" + id_number
+ element_html = document.getElementById(element_name).innerHTML
+ element_html = element_html.split(" (")[0]
+ document.getElementById(element_name).innerHTML = element_html + " (INFILTRATION)"
+ document.getElementById(id_number + "-none").style.visibility = "visible"
+ document.getElementById(id_number + "-infiltration").style.visibility = "hidden"
+ document.getElementById(id_number + "-legal").style.visibility = "hidden"
+ document.getElementById(id_number + "-paramilitary").style.visibility = "hidden"
+ infiltration_targets.push(id_number)
+}
+function set_legal(id_number){
+ if( legal_targets.length >= 3 ) {
+   return 
+ }
+ element_name = "SCP-" + id_number
+ element_html = document.getElementById(element_name).innerHTML
+ element_html = element_html.split(" (")[0]
+ document.getElementById(element_name).innerHTML = element_html + " (LEGAL)"
+ document.getElementById(id_number + "-none").style.visibility = "visible"
+ document.getElementById(id_number + "-infiltration").style.visibility = "hidden"
+ document.getElementById(id_number + "-legal").style.visibility = "hidden"
+ document.getElementById(id_number + "-paramilitary").style.visibility = "hidden"
+ legal_targets.push(id_number)
+}
+function set_paramilitary(id_number){
+ if( paramilitary_targets.length >= 3 ) {
+   return 
+ }
+ element_name = "SCP-" + id_number 
+ element_html = document.getElementById(element_name).innerHTML
+ element_html = element_html.split(" (")[0]
+ document.getElementById(element_name).innerHTML = element_html + " (PARAMILITARY)"
+ document.getElementById(id_number + "-none").style.visibility = "visible"
+ document.getElementById(id_number + "-infiltration").style.visibility = "hidden"
+ document.getElementById(id_number + "-legal").style.visibility = "hidden"
+ document.getElementById(id_number + "-paramilitary").style.visibility = "hidden"
+ paramilitary_targets.push(id_number)
+}
+function set_none(id_number){
+ element_name = "SCP-" + id_number 
+ element_html = document.getElementById(element_name).innerHTML
+ element_html = element_html.split(" (")[0]
+ document.getElementById(element_name).innerHTML = element_html
+ document.getElementById(id_number + "-none").style.visibility = "hidden"
+ document.getElementById(id_number + "-infiltration").style.visibility = "visible"
+ document.getElementById(id_number + "-legal").style.visibility = "visible"
+ document.getElementById(id_number + "-paramilitary").style.visibility = "visible"
+ infiltration_targets = infiltration_targets.filter(item => item !== id_number)
+ legal_targets = legal_targets.filter(item => item !== id_number)
+ paramilitary_targets = paramilitary_targets.filter(item => item !== id_number)
+}
+
+function calc_expected_profit(target_id, team_type){
+  if(target_id == 537){
+    return(0)
+  }
+  if(target_id in scp_info) {
+    target_info = scp_info[target_id]
+    prob_theft = target_info[team_type]
+    return(prob_theft * target_info.EV_if_stolen)
+  }
+  console.log("AUGH!")
+  return(0)
+}
+function calc_source(id_number) {
+  rng = Math.random()
+  if( rng < scp_info[id_number].Creator ){
+    return("Creator")
+  }
+  rng = rng - scp_info[id_number].Creator
+  if( rng < scp_info[id_number].Spacetime ){
+    return("Spacetime")
+  }
+  rng = rng - scp_info[id_number].Spacetime
+  if( rng < scp_info[id_number].Anart ){
+    return("Anart")
+  }
+  rng = rng - scp_info[id_number].Anart
+  if( rng < scp_info[id_number].Villain ){
+    return("Villain")
+  }
+  console.log("AIIIEEE!")
+}
+function danger_level_valid_for_class(danger, required_danger_class){
+  if( required_danger_class == Safe ){
+    if( danger <= 2 ){
+      return(true)
+    }
+  }
+  if( required_danger_class == Euclid ){
+    if( danger <= 4 && danger >= 3 ){
+      return(true)
+    }
+  }
+  if( required_danger_class == Keter ){
+    if( danger >= 5 ){
+      return(true)
+    }
+  }
+  return(false)
+}
+function roll_die(x){
+  return(Math.ceil(Math.random() * x))
+}
+function calc_profit_by_danger_and_value(danger, value){
+  base_cost = 2000000 * danger * danger
+  base_revenue = 2000000 * value * value
+  cost = base_cost * (9 - roll_die(6)) / 6
+  revenue = base_revenue * (roll_die(6) + 3) / 6
+  profit = revenue - cost
+  console.log([danger, value, cost, revenue, profit])
+  return(profit)
+}
+function get_creator_sample(){
+  danger = roll_die(5)
+  value = danger + roll_die(3)
+  return([danger, value])
+}
+function get_spacetime_sample(){
+  danger = roll_die(6)
+  value = 5
+  return([danger, value])
+}
+function get_anart_sample(){
+  danger = 0 
+  value = 0
+  rolls = 0
+  while(rolls < 12){
+    roll = roll_die(6)
+    if(roll == 1){
+      danger = danger + 1
+    }
+    if(roll == 6){
+      value = value + 1
+    }
+    rolls = rolls + 1
+  }
+  return([danger, value])
+}
+function get_villain_sample(){
+  value = roll_die(4)
+  danger = value + roll_die(5)
+  return([danger, value])
+}
+function calc_actual_profit_by_source_and_danger(source, required_danger_class) {
+  valid = false
+  while(valid == false) {
+    if(source == "Creator"){
+      [danger, value] = get_creator_sample()
+    }
+    if(source == "Spacetime"){
+      [danger, value] = get_spacetime_sample()
+    }
+    if(source == "Anart"){
+      [danger, value] = get_anart_sample()
+    }
+    if(source == "Villain"){
+      [danger, value] = get_villain_sample()
+    }
+    if(danger_level_valid_for_class(danger, required_danger_class)){
+      valid = true
+    }
+  }
+  profit = calc_profit_by_danger_and_value(danger, value)  
+  return(profit)
+}
+function calc_actual_profit_if_stolen(target_id){
+  source_type = calc_source(target_id)
+  danger_class = scp_info[target_id].Danger_class
+  profit = calc_actual_profit_by_source_and_danger(source_type, danger_class) 
+  return(profit)
+}
+function calc_actual_profit(target_id, team_type){
+  document.getElementById("detail_text").innerHTML = document.getElementById("detail_text").innerHTML + "<br>" + team_type + " team sent to acquire SCP-" + target_id + ": "
+  if(target_id == 537){
+    document.getElementById("detail_text").innerHTML = document.getElementById("detail_text").innerHTML + "The acquisition was successful, but the object seems to have disappeared afterwards...zero profit made!"
+    return(0)
+  }
+  if(target_id in scp_info) {
+    target_info = scp_info[target_id]
+    prob_theft = target_info[team_type]
+    if(Math.random() < prob_theft) {
+      profit = calc_actual_profit_if_stolen(target_id)
+      if(scp_info[target_id].Danger_class == "Keter") {
+        keter_profits = keter_profits + profit
+      }
+      document.getElementById("detail_text").innerHTML = document.getElementById("detail_text").innerHTML + "Acquisition Successful, $" + (profit / 1000000).toFixed(1) + "MM profit/loss made."
+      return(profit)
+    }
+  }
+  document.getElementById("detail_text").innerHTML = document.getElementById("detail_text").innerHTML + "Acquisition Failed."
+  return(0)
+}
+function get_story_text(overall_profit){
+  if(overall_profit < -250000000) {
+    text = "<br><br>You're dragged into Mr. Marshall's office by two large men and unceremoniously deposited on the ground in front of him."
+    text = text + "<br><br>It takes a lot to break Mr. Marshall's composure, but you seem to have managed it.  His face is twisted into a snarl, and he practically spits at you as he speaks."
+    text = text + "<br><br>\"This?\"  He's almost yelling.  The security behind you shifts uneasily.  \"This is how you repay me?  You know, Carter wanted to see you dead for your earlier insolence.  I had to convince him otherwise.  I told him that you'd be more useful in another role.  I convinced him to give you a second chance.  And then you did this!\""
+    text = text + "<br><br>Mr. Marshall's voice is lower, cold.  \"This is the largest breach of our secrecy, and the largest humiliation, that this firm has ever experienced.\"  Does something of your satisfaction show on your face?  Or is he just guessing?  \"You approve?  You think we deserve it?  The nation of Madagascar is currently under international quarantine to investigate the spread of an unusually virulent new pandemic.  Four hundred people have disappeared in a shopping mall near Frankfurt.  A new kind of aerial predator is driving eagle and falcon populations to extinction.  Your insane efforts against us have already reached a death count in the thousands.\""
+    text = text + "<br><br>\"Now.  I need to help salvage what we can from this fiasco.  You will remain here until we can determine a suitable-\""
+    text = text + "<br><br>\"Repeat please.  Over.\"  Mr. Marshall rounds on the security officer who spoke, but before his mouth can open there's a crash as one of the walls explodes inward."
+    text = text + "<br><br>You're thrown across the room, colliding with a wall.  As darkness covers your vision, you see one security officer standing his ground with a gun in his hand, the other rushing Mr. Marshall out a door."
+    text = text + "<br><br>You wake in your bed the next morning.  You have a vague memory of an interesting dream, of magical artifacts and men in black and exhaustive debriefings.  You try to focus on it, remember it, but it fades away like morning mist.  You don't have time for this anyway.  You have to get to your Silicon Valley tech job.  It's your first day on the job just out of Data Science School, and you're anxious to make a good first impression."
+    text = text + "<br><br>ENDING A"
+    return(text)
+  }
+  if(overall_profit <= 0) {
+    return("<br><br>You're dragged into Mr. Marshall's office by two large men and unceremoniously deposited on the ground in front of him.<br><br>\"I'm disappointed, you know.\"  His voice is still smooth, unwavering.  \"I had such hopes for you.  But Acquisitions continues to be a burden on the rest of the firm, and a drag on our profits.\"<br><br>A slight sigh. \"And you've lost me my bet with Mr. Carter as well.\"  He sounds more put out about this than about the money.<br> <br>\"Well, we'll see what value we can recover from you.\" He gestures to the men. \"Get this asset down to Reprocessing and out of my sight.\" <br><br> ENDING B")
+  }
+  if(overall_profit < 150000000) {
+    text = "<br><br>\"An acceptable quarter, all things considered.\" Mister Marshall seems pleased, for whatever that's worth."
+    text = text + "<br><br>\"And you've won me my bet with Mr. Carter as well.\" He smiles benevolently at you.  " 
+    text = text + "\"He didn't expect much from your methods, but I had a little more faith, and I'm pleased to see it's been rewarded.\""
+    text = text + "<br><br>\"We, ah, do expect this level of performance to continue.  I'm sure you understand that laxity in your duties will not be tolerated.  But for now, well done.\""
+    if(keter_profits == 0){
+      text = text + "<br><br>\"One additional thing - it seems that most of your profits are coming from the...ah...the less interesting elements of the Foundation's holdings.\"<br><br>\"I suppose really this is my fault - I did tell you that you would be evaluated on your profit or loss.  However, P&L is not the whole purpose of Acquisitions.  While it's hard for us to measure or directly monetize them, we do have very large indirect client relationship gains from these objects that increases with how...interesting...they are.  As such, next quarter we'd like to see you extending your methodology to also pursue some of the Foundation's Keter-class objects.  I know this may prove more difficult, but I have great confidence you'll help me show up Mr. Carter once more!\""
+    }
+    text = text + "<br><br>He gestures to the men.  \"I'm sure you're anxious to start work on next quarter's selections.  Security will escort you back to your office.  Do try to ensure another profitable quarter!\"<br><br> ENDING C"
+    return(text) 
+ }
+  
+  text = "<br><br>Mr. Marshall hosts a celebratory gathering to recognize the superb performance in the Acquisitions department this quarter.  Salespeople who used to pass you in the hallway without looking clap you on the back and congratulate you.  Even your old boss Mr. Alden comes by to wish you well. (Do you see a little surprise in his demeanour?  Or are you imagining things?)  You hold a glass of wine that costs more than a new car and feel awkward."
+  text = text + "<br><br>\"There you are!\" You spot Mr. Marshall approaching.  \"The hero of the day!  I must say, I had high hopes for you in this role, but you have exceeded them all."
+  text = text + "  If Acquisitions can be this successful - well.  This is the start of a bold new era in the history of our firm, with you at the center.\"  He smiles.  "
+  text = text + "\"Really this is quite annoying...it's going to be hard to figure out how much we have to pay you now.  "
+  text = text + "But Marshall, Carter and Dark appreciates valuable employees, and I'm sure you'll find your compensation package won't disappoint.  We're also going to have to see about moving you into a more senior role - in the short term you may have to do the work yourself, but I've directed Ms. Lawson from hiring to work with you on finding suitable employees who you can hand off the drudge work to from your new role as Vice President of Acquisitions.\"  Another dazzling smile."
+  if(keter_profits <= 50000000){
+    text = text + "<br><br>\"I also should apologize if I was a bit brusque with you earlier.\"  Mr. Marshall meets your eyes with what seems like absolute sincerity.  \"Marshall, Carter and Dark makes a poor adversary, but an excellent friend.  I'm sure you'll find that we have much to offer you in your new role.\"  <br><br>You take a sip of the wine while trying to figure out how to respond.  It tastes far better than you recall.  Perhaps you could get used to this."
+    text = text + "<br><br>Ending D"
+    return(text)
+  }
+  text = text + "<br><br>\"I also should-\"<br><br> Mr. Marshall's voice trails off.  He's looking over your shoulder.  The room behind you seems strangely quiet.  You turn, and the party is gone.  The laughing salespeople, the tables laden with fancy food, the silver chandeliers - everything has faded into muted shadow."
+  text = text + "<br><br>Walking briskly toward you, as if from a long distance, is a man.  He's wearing a suit - a somewhat shabby one by the standards of Marshall, Carter and Dark salespeople.  Then you meet his eyes."
+  text = text + "<br><br>You feel somehow certain that if you move one muscle, you will die.  You stand transfixed, like a rabbit that has just spotted a predator, as he approaches.  "
+  text = text + "<br><br>\"Percival.\"  Mr. Marshall's voice is pleasant, but sounds rather forced.  You'd prefer not to think about what it takes to make Mr. Marshall sound forced.  "
+  text = text + "\"This is the new head of Acquisitions I was talking about.\" He turns to you.  \"And allow me to introduce Mr. Darke, the third of our-\""
+  text = text + "<br><br>One does not simply interrupt Mr. Marshall while he is talking, but Darke cuts over him.  \"This 'data science' of yours.  How long does it take to learn?\""
+  text = text + "<br><br>That...is not what you expected to hear.  Your mouth moves but words don't seem to come out.  Darke doesn't seem to care, he's studying your face.  \"A matter of years, then, rather than days?  Unfortunate.\""
+  text = text + "<br><br>Mr. Marshall's voice is clipped.  \"If you're quite done terrorizing my subordinates, Percival?\""
+  text = text + "<br><br>Darke frowns at him.  \"Spare me.  Your paltry profits are one thing.  But this technique seems to have demonstrated power against not merely toys but the more dangerous works of the Beyond.\"  His voice grows cold. \"The things from outside this world have many weapons: knives and riddles, fire and despair.  I have weapons of my own.  And when a technique appears that offers the potential for a new weapon, I will learn it for myself.\"  A rasping sigh, like paper turning in an old library.  \"But I am an old man, and I will not have time to learn such things.  Still.  It is less than four months until the day when I will at last locate my heir.  She will learn these arts, and learn in time to surpass me.\"  He gestures to you.  \"Do not expend this one in the meantime.  I may have need of a tutor.\""
+  text = text + "<br><br>\"Now Percival, you can't just demand that a vice president of-\" Marshall's remonstrances hit empty air, as Darke is gone.  The sounds of the party resume around you.  Mr. Marshall sighs.  \"Mr. Darke can sometimes be...difficult to deal with.  I'll speak to him about this.  In the meantime, you don't need to worry.\"  A somewhat forced smile, that does not entirely quell your worries."
+  text = text + "<br><br>Ending E"
+  return(text)
+}
+function reset(){
+ keter_profits = 0
+ document.getElementById("input").style.display = "block"
+ document.getElementById("output_text").innerHTML = ""
+ document.getElementById("story_text").innerHTML = ""
+ document.getElementById("detail_text").innerHTML = ""
+ document.getElementById("reset_button").style.visibility = "hidden"
+}
+function calculate(){
+ overall_actual_profit = 0
+ overall_expected_profit = 0
+ keter_profits = 0
+ document.getElementById("detail_text").innerHTML = "You sent the following teams:<br>"
+ infiltration_targets.forEach( target_id => {
+   overall_expected_profit = overall_expected_profit + calc_expected_profit(target_id, "Infiltration")
+   new_profit = calc_actual_profit(target_id, "Infiltration")
+   console.log(new_profit)
+   overall_actual_profit = overall_actual_profit + new_profit
+   console.log(overall_actual_profit)
+ });
+ legal_targets.forEach( target_id => {
+   overall_expected_profit = overall_expected_profit + calc_expected_profit(target_id, "Legal")
+   new_profit = calc_actual_profit(target_id, "Legal")
+   console.log(new_profit)
+   overall_actual_profit = overall_actual_profit + new_profit
+   console.log(overall_actual_profit)
+ });
+ paramilitary_targets.forEach( target_id => {
+   overall_expected_profit = overall_expected_profit + calc_expected_profit(target_id, "Paramilitary")
+   new_profit = calc_actual_profit(target_id, "Paramilitary")
+   console.log(new_profit)
+   overall_actual_profit = overall_actual_profit + new_profit
+   console.log(overall_actual_profit)
+ });
+
+ display_expected_profit = (overall_expected_profit / 1000000).toFixed(1)
+ display_actual_profit = (overall_actual_profit / 1000000).toFixed(1)
+ document.getElementById("input").style.display = "none"
+ document.getElementById("output_text").innerHTML = "<br>You made $" + display_actual_profit + "MM overall.<br>Your expected average overall profit with this strategy was $" + display_expected_profit + "MM."
+ document.getElementById("story_text").innerHTML = get_story_text(overall_actual_profit)
+ document.getElementById("reset_button").style.visibility = "visible"
+}
+
 </script>
     
 </html>
