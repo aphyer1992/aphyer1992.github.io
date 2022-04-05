@@ -323,8 +323,7 @@ function monte_carlo(deck, rival_deck, runs_to_do){
   }
   runs = runs + 1
  }
- document.getElementById("output_text").innerHTML = document.getElementById("output_text").innerHTML + "<br><br>" + runs + " games played, " + wins + " wins, " + losses + " losses."
-
+ document.getElementById("output_text").innerHTML = document.getElementById("output_text").innerHTML + "<br><br>Estimated winrate: " + (wins * 100 / runs) + "%"
 }
 function show_hide_details(){
  vis = document.getElementById("detail_text").style.display
