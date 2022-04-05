@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Duels & D.Sci Evaluator</title>
+</head>
+<body>
+    <button id="A_decrement" disabled="true" onclick="decrement('A')">-1</button><span id="A" display="inline">0</span><button id="A_increment" onclick="increment('A')">+1</button>Alessin, Adamant Angel<br>
+    <button id="B_decrement" disabled="true" onclick="decrement('B')">-1</button><span id="B" display="inline">0</span><button id="B_increment" onclick="increment('B')">+1</button>Bold Battalion<br>
+    <button id="D_decrement" disabled="true" onclick="decrement('D')">-1</button><span id="D" display="inline">0</span><button id="D_increment" onclick="increment('D')">+1</button>Dreadwing, Darkfire Dragon<br>
+    <button id="E_decrement" disabled="true" onclick="decrement('E')">-1</button><span id="E" display="inline">0</span><button id="E_increment" onclick="increment('E')">+1</button>Evil Emperor Eschatonus, Empyreal Envoy of Entropic End<br>
+    <button id="G_decrement" disabled="true" onclick="decrement('G')">-1</button><span id="G" display="inline">0</span><button id="G_increment" onclick="increment('G')">+1</button>Gentle Guard<br>
+    <button id="H_decrement" disabled="true" onclick="decrement('H')">-1</button><span id="H" display="inline">0</span><button id="H_increment" onclick="increment('H')">+1</button>Horrible Hooligan<br>
+    <button id="K_decrement" disabled="true" onclick="decrement('K')">-1</button><span id="K" display="inline">0</span><button id="K_increment" onclick="increment('K')">+1</button>Kindly Knight<br>
+    <button id="L_decrement" disabled="true" onclick="decrement('L')">-1</button><span id="L" display="inline">0</span><button id="L_increment" onclick="increment('L')">+1</button>Lilac Lotus<br>
+    <button id="M_decrement" disabled="true" onclick="decrement('M')">-1</button><span id="M" display="inline">0</span><button id="M_increment" onclick="increment('M')">+1</button>Murderous Minotaur<br>
+    <button id="P_decrement" disabled="true" onclick="decrement('P')">-1</button><span id="P" display="inline">0</span><button id="P_increment" onclick="increment('P')">+1</button>Patchy Pirate<br>
+    <button id="S_decrement" disabled="true" onclick="decrement('S')">-1</button><span id="S" display="inline">0</span><button id="S_increment" onclick="increment('S')">+1</button>Sword of Shadows<br>
+    <button id="V_decrement" disabled="true" onclick="decrement('V')">-1</button><span id="V" display="inline">0</span><button id="V_increment" onclick="increment('V')">+1</button>Virtuous Vigilante<br>
+  <br>
+  <button onclick="calculate()">Duel!</button>
+  <br>
+  <button id="show_hide_button" onclick="show_hide_details()">Show Exact Cards Played</button>
+  <br>
+  <button id="select_opponent_button" onclick="show_hide_opponents()">Select Alternative Opponents</button>
+</div>
+<div id="opponents" style="display:none;">
+  <div><button id="choose_rival_button" onclick="choose_rival()">Rival</button> Some would call it undignified for a billionaire CEO to have an ongoing rivalry with a middle schooler who is 3 feet tall, or 4 if you count his hair.  Some would call it more undignified that you keep losing.</div><br>
+  <div><button id="choose_gilgamesh_button" onclick="choose_gilgamesh()">Spirit Emperor Gilgamesh</button> Your rival claims to have completed the Sumerian Sudoku and gained the power to call upon the spirit of the Sumerian Emperor Gilgamesh.  Mostly that seems to just mean that he lowers his voice as far as it will go and tries to speak dramatically.  He plays a somewhat stronger deck though!</div><br>
+  <div><button id="choose_creepy_button" onclick="choose_creepy()">Creepy Child</button> One of your rival's fellow middle schoolers has followed him to the opening tournament, and is acting somewhat creepy.  He says that if he beats you in a children's card game, his Sumerian Scissors can slice out your soul.  They just look like regular scissors to you.  That's...still bad, though.  Someone should take those away from him.</div><br>
+  <div><button id="choose_griffon_button" onclick="choose_griffon()">Maxwell Griffon</button> Maxwell Griffon, CEO of the Sorcerers of the Shore, and the only billionaire more obsesssed with children's card games than you.  According to him, the glasses he's wearing are the 'Sumerian Spectacles' and will let him see into your mind and know what cards you've drawn.  You think he probably actually has a goon with binoculars somewhere behind you and a concealed earpiece.  You guess you have to admire his commitment to roleplaying though.</div><br>
+</div>
+
+  <div id="detail_text" style="display:none;"></div>
+  <div id="output_text"></div>
+  <div id="story_text"></div>
+  <br>
+  <br>
+  <button id="reset_button" style="visibility:hidden;" onclick="reset()">Reset</button>
+</body>
+
+<script id="jsbin-javascript">
+
+var total_cards= 0
+var deck_size = 12
+var cards = ['A', 'B', 'D', 'E', 'G', 'H', 'K', 'L', 'M', 'P', 'S', 'V']
+var name_map = {
+ 'A' : 'Alessin, Adamant Angel',
+ 'B' : 'Bold Battalion',
+ 'D' : 'Dreadwing, Darkfire Dragon',
+ 'E' : 'Evil Emperor Eschatonus, Empyreal Envoy of Entropic End',
+ 'G' : 'Gentle Guard',
+ 'H' : 'Hired Hooligan',
+ 'K' : 'Kindly Knight',
+ 'L' : 'Lilac Lotus',
+ 'M' : 'Murderous Minotaur',
+ 'S' : 'Sword of Shadows',
+ 'P' : 'Patchy Pirate',
+ 'V' : 'Virtuous Vigilante',
+}
+var cost_map = {
+ 'A' : 5,
+ 'B' : 4,
+ 'D' : 5,
+ 'E' : 6,
+ 'G' : 1,
+ 'H' : 2,
+ 'K' : 2,
+ 'L' : 1,
+ 'M' : 4,
+ 'S' : 3,
+ 'P' : 1,
+ 'V' : 3,
+}
+var score_map = {
+ 'A' : 1800,
+ 'B' : 600,
+ 'D' : 2500,
+ 'E' : 4500,
+ 'G' : 700,
+ 'H' : 900,
+ 'K' : 900,
+ 'L' : 200,
+ 'M' : 1700,
+ 'S' : 2000,
+ 'P' : 700,
+ 'V' : 1300,
+}
+
+var instant_win = 2000
+var rival_deck = []
+var win_text = ""
+var loss_text = ""
+
+function decrement(card){
+ new_val = parseInt(document.getElementById(card).innerHTML, 10) - 1
+ total_cards = total_cards - 1
+ document.getElementById(card).innerHTML = new_val
+ if(new_val == 0){
+  decrement_button_id = card + '_decrement'
+  document.getElementById(decrement_button_id).disabled = true
+ }
+ if(total_cards==deck_size - 1){
+  cards.forEach(card_to_enable => {
+   increment_button_id = card_to_enable + '_increment'
+   document.getElementById(increment_button_id).disabled = false
+  })
+ }
+}
+function increment(card){ 
+ new_val = parseInt(document.getElementById(card).innerHTML, 10) + 1
+ total_cards = total_cards + 1
+ document.getElementById(card).innerHTML = new_val
+ if(new_val == 1){
+  decrement_button_id = card + '_decrement'
+  document.getElementById(decrement_button_id).disabled = false
+ }
+ if(total_cards==deck_size){
+  cards.forEach(card_to_disable => {
+   increment_button_id = card_to_disable + '_increment'
+   document.getElementById(increment_button_id).disabled = true
+  })
+ }
+}
+function calc_source(id_number) {
+  rng = Math.random()
+}
+function shuffle_array(input_array){
+ output_array = []
+ while(input_array.length > 0){
+  if(output_array.length > 99){
+   console.log("AAAIIEEEE!")
+   continue
+  }
+  index = Math.floor(Math.random() * input_array.length)
+  output_array = output_array.concat(input_array[index])
+  input_array.splice(index, 1)
+ }
+ return(output_array)
+}
+function score_card(card_to_score, board){
+ if(card_to_score == "B"){
+  score = 0
+  board.forEach( card_to_check_for_good => {
+   if(["A", "B", "G", "K", "V"].includes(card_to_check_for_good)){
+    score = score + 600
+   }
+  })
+  return(score)
+ } else if( card_to_score == 'S') {
+  wielded = false
+  board.forEach(card_to_check_for_wielder => {
+   if(['D', 'E', 'H', 'M', 'P'].includes(card_to_check_for_wielder)){
+    wielded = true
+   }
+  })
+  if(wielded == true){
+   return(2000)
+  } else {
+   return(0)
+  }
+ } else {
+  return(score_map[card_to_score])
+ }
+}
+function score_board(board){
+ total_score = 0
+ board.forEach(card_to_score=>{
+  total_score = total_score + score_card(card_to_score, board)
+ })
+ return(total_score)
+}
+function print_detail(text){
+ document.getElementById("detail_text").innerHTML = document.getElementById("detail_text").innerHTML + text
+}
+function play_round(deck, board, round_number){
+ available_mana = round_number
+ board.forEach(card_to_check_for_lotus => {
+  if(card_to_check_for_lotus == "L"){
+   available_mana = available_mana + 1
+  }
+ })
+ valid_draws = false
+ while(valid_draws == false) {
+  draws = [deck[0], deck[1]]
+  deck = deck.slice(2)
+  non_angel_card_undrawn = false
+  deck.forEach(card_to_check_for_non_angel => {
+   if(card_to_check_for_non_angel != 'A') {
+    non_angel_card_undrawn = true
+   }
+  })
+  if(draws.includes('A') && available_mana < 5 && non_angel_card_undrawn == true)
+  {
+   valid_draws = false
+   deck = deck.concat(draws)
+   deck = shuffle_array(deck)
+  } else {
+   valid_draws = true
+  }
+ }
+ valid_plays = []
+ max_cost_play = 0
+ draws.forEach(card_to_test=>{
+  card_cost = cost_map[card_to_test]
+  if(card_cost <= available_mana){
+    if(card_cost == max_cost_play){
+     valid_plays = valid_plays.concat(card_to_test)
+    }
+    if(card_cost > max_cost_play){
+    max_cost_play = card_cost
+    valid_plays = [card_to_test]
+   }
+  }
+ })
+ card_to_play = "nothing"
+ if(valid_plays.length >= 1 ){
+  card_to_play = valid_plays[0]
+  cards_to_play = [card_to_play]
+  board = board.concat(card_to_play)
+ }
+ 
+ retval = [deck, board, draws, card_to_play]
+ return(retval)
+}
+function duel(player_deck, opponent_deck, verbose){
+ if(player_deck.length != 12){
+  console.log('AIIIIEEE!') 
+ }
+ if(rival_deck.length != 12){
+  console.log('AUUUUGH!') 
+ }
+ round_number = 1
+ player_deck = shuffle_array(player_deck)
+ opponent_deck = shuffle_array(opponent_deck)
+ 
+ player_board = []
+ opponent_board = []
+ game_over = false
+ while(game_over == false){
+  if(verbose){
+   print_detail("Round " + round_number + ":<br>")
+  }
+  var player_draws = []
+  var player_play = []
+  player_ret = play_round(player_deck, player_board, round_number)
+  player_deck = player_ret[0]
+  player_board = player_ret[1]
+  player_draws = player_ret[2]
+  player_play = player_ret[3]
+  var opponent_draws = []
+  var opponent_play = []
+  opponent_ret = play_round(opponent_deck, opponent_board, round_number)
+  opponent_deck = opponent_ret[0]
+  opponent_board = opponent_ret[1]
+  opponent_draws = opponent_ret[2]
+  opponent_play = opponent_ret[3]
+  player_score = score_board(player_board)
+  opponent_score = score_board(opponent_board)
+  if(verbose){
+   print_detail('You drew ' + player_draws[0] + ' and ' + player_draws[1] + '.<br>')
+   print_detail("You played " + player_play + '.<br>')
+   print_detail('Your total power is now ' + player_score + '.<br>')
+  
+   print_detail('Your opponent drew ' + opponent_draws[0] + ' and ' + opponent_draws[1] + '.<br>')
+   print_detail("Your opponent played " + opponent_play + '.<br>')
+   print_detail("Your opponent's total power is now " + opponent_score + ".<br><br>")
+  }
+
+  if(player_score - opponent_score >= instant_win){
+   if(verbose){
+    print_detail("You won an instant win!<br>")
+   }
+   game_over = true
+  }
+
+  if(opponent_score - player_score >= instant_win){
+   if(verbose){
+    print_detail("Your opponent won an instant win!<br>")
+   }
+   game_over = true
+  }
+  if(round_number == 6){
+   game_over = true
+  }
+  round_number = round_number + 1
+ }
+ if(player_score == opponent_score){
+  if(verbose){
+   print_detail("Your Powers are equal!  It all comes down to this final clash...<br>")
+  } 
+  player_score = player_score + Math.random()
+  opponent_score = opponent_score + Math.random()
+ }
+ if(player_score > opponent_score){
+  if(verbose){
+   document.getElementById("output_text").innerHTML = '<b>You Win!</b>'
+  }
+  return(1)
+ }
+ if(player_score < opponent_score){
+  if(verbose){
+   document.getElementById("output_text").innerHTML = '<b>You Lose!</b>'
+  }
+  return(-1)
+ }
+}
+
+function monte_carlo(deck, rival_deck, runs_to_do){
+ runs = 0
+ wins = 0
+ losses = 0
+ while(runs < runs_to_do){
+  deck_copy = [...deck]
+  rival_deck_copy = [...rival_deck]
+  res = duel(deck_copy, rival_deck_copy, false)
+  if(res == 1){
+   wins = wins + 1
+  }
+  if(res == -1){
+   losses = losses + 1
+  }
+  runs = runs + 1
+ }
+ document.getElementById("output_text").innerHTML = document.getElementById("output_text").innerHTML + "<br><br>" + runs + " games played, " + wins + " wins, " + losses + " losses."
+
+}
+function show_hide_details(){
+ vis = document.getElementById("detail_text").style.display
+ if(vis == "block"){
+  document.getElementById("detail_text").style.display = "none"
+  document.getElementById("show_hide_button").innerHTML = "Show Exact Cards Played"
+ } else {
+  document.getElementById("detail_text").style.display = "block"
+  document.getElementById("show_hide_button").innerHTML = "Hide Exact Cards Played"
+ }
+}
+function show_hide_opponents(){
+ vis = document.getElementById("opponents").style.display
+ if(vis == "block"){
+  document.getElementById("opponents").style.display = "none"
+  document.getElementById("select_opponent_button").innerHTML = "Show Alternative Opponents"
+ } else {
+  document.getElementById("opponents").style.display = "block"
+  document.getElementById("select_opponent_button").innerHTML = "Hide Alternative Opponents"
+ }
+}
+function calculate(){
+ if(total_cards != 12){
+  document.getElementById("detail_text").innerHTML = "Your deck must have exactly 12 cards in it!"
+  return
+ }
+ document.getElementById("detail_text").innerHTML = ""
+ 
+ deck = []
+ cards.forEach(card_to_include =>{
+  card_count = parseInt(document.getElementById(card_to_include).innerHTML, 10)
+  for (var i = 0; i < card_count; i++) {
+   deck = deck.concat(card_to_include);
+  };
+ })
+ deck_copy = [...deck]
+ rival_deck_copy = [...rival_deck]
+ res = duel(deck_copy, rival_deck_copy, true)
+ if(res==1){
+  document.getElementById("story_text").innerHTML = win_text
+ } else {
+  document.getElementById("story_text").innerHTML = loss_text
+ }
+ monte_carlo(deck, rival_deck, 1000)
+}
+function choose_rival(){
+ rival_deck = cards
+ document.getElementById("choose_rival_button").disabled = true
+ document.getElementById("choose_gilgamesh_button").disabled = false
+ document.getElementById("choose_creepy_button").disabled = false
+ document.getElementById("choose_griffon_button").disabled = false
+ win_text = "Victory, at last!  Your rival may have won your last encounter...and the one before that, and the one before that...but with the power of data science, and ten orders of magnitude more money than him, you were at last able to triumph!"
+ loss_text = "You don't know why you expected differently.  Is this your fate?  To forever lose card games to a middle schooler?  As your record falls from 0-10 to 0-11, you can only wonder."
+}
+function choose_gilgamesh(){
+ rival_deck = ['B', 'B', 'B', 'B', 'B', 'B', 'G', 'G', 'G', 'G', 'G', 'G']
+ document.getElementById("choose_rival_button").disabled = false
+ document.getElementById("choose_gilgamesh_button").disabled = true
+ document.getElementById("choose_creepy_button").disabled = false
+ document.getElementById("choose_griffon_button").disabled = false
+ win_text = "Even with the power of Ancient Sumeria, he is no match for you.  Really, this isn't all that surprising.  Did Ancient Sumeria have computers?  Or data science?  You don't think so!"
+ loss_text = "The only thing more embarrassing than losing a card game to a middle schooler is losing while he puts on a dramatic voice and tries to look cool.  You really hope no-one saw that."
+}
+function choose_creepy(){
+ rival_deck = ['A', 'A', 'A', 'A', 'P', 'P', 'P', 'S', 'S', 'S', 'S', 'S']
+ document.getElementById("choose_rival_button").disabled = false
+ document.getElementById("choose_gilgamesh_button").disabled = false
+ document.getElementById("choose_creepy_button").disabled = true
+ document.getElementById("choose_griffon_button").disabled = false
+ win_text = "He seems shocked that you managed to win.  While he's distracted, you quickly grab the scissors away from him.  These definitely aren't good for a kid to be carrying around.  Particularly this kid.  You'll put them somewhere safe.  Or maybe just throw them in a random direction into a forest.  <br>A few minutes later, you see him again.  He seems to have gotten his hands on another pair of scissors that looks exactly the same.  You sigh and mentally mark it as 'someone else's problem.'"
+ loss_text = "You're trying to process having lost this card game to <i>another</i> middle schooler, when suddenly the lunatic is <b>running at you with a pair of scissors.</b>  You (embarrassingly) shriek a bit, and jump back.  Suddenly your rival is standing between you and the Creepy Kid.  'Run!' he says. 'I'll hold him off!' <br>He's going to tell everyone how he rescued you, isn't he.  Could this get any more humiliating?"
+}
+function choose_griffon(){
+ rival_deck = ['A', 'A', 'A', 'E', 'E', 'E', 'E', 'L', 'L', 'L', 'L', 'L']
+ document.getElementById("choose_rival_button").disabled = false
+ document.getElementById("choose_gilgamesh_button").disabled = false
+ document.getElementById("choose_creepy_button").disabled = false
+ document.getElementById("choose_griffon_button").disabled = true
+ win_text = "'Impossible!  My Miiiind Sight is unmatched!  Nooooooooo!'  He seems...really surprisingly broken up about this.  You pat him on the shoulder.  'Really, I'm not sure what advantage you hoped to get from seeing my hand.  There aren't even any decisions to make during the game!  Maybe you should try a bit of a redesign.  Perhaps a card that turns all your opponent's cards into Elk while gaining power?'"
+ loss_text = "'That's right!  You're noooooo match for my Miiiind Siiiight!'  You think his advantage might come more from having known the rules before he had to pick his deck.  You shouldn't say anything though.  It'll just make you look whiny.  Don't say it.  Don't say it.  (You said it)."
+}
+choose_rival()
+</script>
+    
+</html>
