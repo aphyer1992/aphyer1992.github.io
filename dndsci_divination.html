@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>D & D.Sci Divination Evaluator</title>
+</head>
+<body>
+
+<br>
+Prayers against Earthquakes:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Hispania <input type="checkbox" onclick="calc_money()" id="quake_hispania">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Italia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="quake_italia">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Grecia&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="quake_grecia">
+<br>
+<br>
+Prayers against Plague:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Hispania <input type="checkbox" onclick="calc_money()" id="plague_hispania">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Italia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="plague_italia">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Grecia&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="plague_grecia">
+<br>
+<br>
+Grain Shipments: 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Hispania <input type="checkbox" onclick="calc_money()" id="famine_hispania">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Italia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="famine_italia">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Grecia&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="famine_grecia">
+<br>
+<br>
+Fire Protection:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Hispania <input type="checkbox" onclick="calc_money()" id="fire_hispania">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Italia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="fire_italia">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Grecia&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="fire_grecia">
+<br>
+<br>
+Defensive Soldiers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Britannia&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="pillage_hispania">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Germania&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="pillage_italia">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Persia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="pillage_grecia">
+<br>
+<br>
+Aggressive Soldiers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Britannia&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="war_hispania" disabled="true">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Germania&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="war_italia" disabled="true">   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Persia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="calc_money()" id="war_grecia" disabled="true">
+<br>
+<br>
+<div id="money_text"></div>
+<br>
+<button id="calc_button" onclick="calculate()">Calculate!</button>
+</div>
+
+  <div id="result_text"></div>
+  <div id="story_text"></div>
+  <div id="output_text"></div>
+  <br>
+</body>
+
+<script id="jsbin-javascript">
+
+var money_left = 60000
+
+function calculate(){
+ disasters = 0
+ expected_disasters = 0
+ if( document.getElementById("quake_hispania").checked == false ){
+  expected_disasters = expected_disasters + 0.01
+  if(Math.random() < 0.01){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("quake_italia").checked == false ){
+  expected_disasters = expected_disasters + 0.01
+  if(Math.random() < 0.01){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("quake_grecia").checked == false ){
+  expected_disasters = expected_disasters + 0.01
+  if(Math.random() < 0.01){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("plague_hispania").checked == false ){
+  expected_disasters = expected_disasters + 0.01
+  if(Math.random() < 0.01){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("plague_italia").checked == false ){
+  expected_disasters = expected_disasters + 0.4
+  if(Math.random() < 0.4){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("plague_grecia").checked == false ){
+  expected_disasters = expected_disasters + 0.5
+  if(Math.random() < 0.4){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("famine_hispania").checked == false ){
+  expected_disasters = expected_disasters + 0.3
+  if(Math.random() < 0.3){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("famine_italia").checked == false ){
+  expected_disasters = expected_disasters + 0.4
+  if(Math.random() < 0.4){
+   disasters = disasters + 1
+  }
+ }
+ if( document.getElementById("fire_grecia").checked == false ){
+  expected_disasters = expected_disasters + 0.3
+  if(Math.random() < 0.3){
+   disasters = disasters + 1
+  }
+ } else {
+  expected_disasters = expected_disasters + 0.09
+  if(Math.random() < 0.09){
+   disasters = disasters + 1
+  }
+ }
+if( document.getElementById("pillage_hispania").checked == false ){
+  expected_disasters = expected_disasters + 0.2
+  if(Math.random() < 0.2){
+   disasters = disasters + 1
+  }
+ } else {
+  expected_disasters = expected_disasters + 0.1
+  if(Math.random() < 0.1){
+   disasters = disasters + 1
+  }
+ }
+if( document.getElementById("war_grecia").checked == false ){
+  expected_disasters = expected_disasters - 0.05
+  if(Math.random() < 0.05){
+   disasters = disasters - 1
+  }
+ } else {
+  expected_disasters = expected_disasters - 0.1
+  if(Math.random() < 0.1){
+   disasters = disasters - 1
+  }
+ }
+
+ document.getElementById("result_text").innerHTML = "Your number of net disasters was " + disasters + "."
+ if(disasters >= 2){
+  document.getElementById("story_text").innerHTML = "The Emperor is furious with your failure, and has you executed."
+ } else if (disasters == 1 ) {
+  document.getElementById("story_text").innerHTML = "The Emperor considers your performance...adequate.  He rewards you with a purse of gold, but over the next few years he returns to the old school of diviners, and ignores your school of Data-Driven Divination.  Some hundred years later, the Roman Empire falls for reasons that were certainly not related to that."
+ } else {
+   document.getElementById("story_text").innerHTML = "The Emperor is ecstatic with your performance, and funds your school of Data-Driven Divination as the official Imperial school of divination, driving the Empire into a new era of wisdom and prosperity."
+ }
+ document.getElementById("output_text").innerHTML = "Your expected number of net disasters was " + expected_disasters + "."
+}
+
+function calc_money(){
+ money_left = 60000
+ if( document.getElementById("quake_hispania").checked == true){
+  money_left = money_left - 5000
+ }
+ if( document.getElementById("quake_italia").checked == true){
+  money_left = money_left - 5000
+ }
+ if( document.getElementById("quake_grecia").checked == true){
+  money_left = money_left - 5000
+ }
+ if( document.getElementById("fire_hispania").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("fire_italia").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("fire_grecia").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("famine_hispania").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("famine_italia").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("famine_grecia").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("plague_hispania").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("plague_italia").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("plague_grecia").checked == true){
+  money_left = money_left - 10000
+ }
+ if( document.getElementById("pillage_hispania").checked == true){
+  money_left = money_left - 10000
+  document.getElementById("war_hispania").disabled = false
+ } else {
+  document.getElementById("war_hispania").disabled = true
+ }
+ if( document.getElementById("pillage_italia").checked == true){
+  money_left = money_left - 10000
+  document.getElementById("war_italia").disabled = false
+ } else {
+  document.getElementById("war_italia").disabled = true
+ }
+ if( document.getElementById("pillage_grecia").checked == true){
+  money_left = money_left - 10000
+  document.getElementById("war_grecia").disabled = false
+ } else {
+  document.getElementById("war_grecia").disabled = true
+ }
+ if( document.getElementById("war_hispania").checked == true){
+  money_left = money_left - 5000
+  document.getElementById("pillage_hispania").disabled = true
+ } else {
+  document.getElementById("pillage_hispania").disabled = false
+ }
+ if( document.getElementById("war_italia").checked == true){
+  money_left = money_left - 5000
+  document.getElementById("pillage_italia").disabled = true
+ } else {
+  document.getElementById("pillage_italia").disabled = false
+ }
+ if( document.getElementById("war_grecia").checked == true){
+  money_left = money_left - 5000
+  document.getElementById("pillage_grecia").disabled = true
+ } else {
+  document.getElementById("pillage_grecia").disabled = false
+ }
+ write_money()
+ if( money_left < 0 ){
+  document.getElementById("calc_button").disabled = true
+ } else {
+  document.getElementById("calc_button").disabled = false
+ }
+}
+function write_money(){
+ document.getElementById("money_text").innerHTML = "Money Left: " + money_left + " denarii"
+}
+write_money()
+</script>
+    
+</html>
