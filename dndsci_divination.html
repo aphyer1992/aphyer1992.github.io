@@ -152,7 +152,7 @@ if( document.getElementById("war_grecia").checked == false ){
  } else {
    document.getElementById("story_text").innerHTML = "The Emperor is ecstatic with your performance, and funds your school of Data-Driven Divination as the official Imperial school of divination, driving the Empire into a new era of wisdom and prosperity."
  }
- document.getElementById("output_text").innerHTML = "Your expected number of net disasters was " + expected_disasters + "."
+ document.getElementById("output_text").innerHTML = "Your expected number of net disasters was " + expected_disasters.toFixed(2) + "."
 }
 
 function calc_money(){
