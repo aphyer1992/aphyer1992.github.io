@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Ars D&D.Sci Evaluator</title>
+</head>
+<body>
+
+    <div>Alatar's Abyssal Armor <button id="A_select" onclick="select('A')">Select</button> <button id="A_deselect" disabled="true" onclick="deselect('A')">Unselect</button>  </div>
+    <div>Balefire Blast of Bonisagus <button id="B_select"  onclick="select('B')">Select</button> <button id="B_deselect" disabled="true" onclick="deselect('B')">Unselect</button>  </div>
+    Crystalline Citadel of Criamon <button id="C_select" onclick="select('C')">Select</button> <button id="C_deselect" disabled="true" onclick="deselect('C')">Unselect</button>  <br>
+    Flambeau's Flying Fireball <button id="F_select" onclick="select('F')">Select</button> <button id="F_deselect" disabled="true" onclick="deselect('F')">Unselect</button>  <br>
+    Hylenion's Hammer of the Heavens <button id="H_select" onclick="select('H')">Select</button> <button id="H_deselect" disabled="true" onclick="deselect('H')">Unselect</button>  <br>
+    Logain's Lava Levee <button id="L_select" onclick="select('L')">Select</button> <button id="L_deselect" disabled="true" onclick="deselect('L')">Unselect</button>  <br>
+    Merinita's Mud Missiles <button id="M_select" onclick="select('M')">Select</button> <button id="M_deselect" disabled="true" onclick="deselect('M')">Unselect</button>  <br>
+    Olorin's Obsidian Onslaught <button id="O_select" onclick="select('O')">Select</button> <button id="O_deselect" disabled="true" onclick="deselect('O')">Unselect</button>  <br>
+    Rainbow Rays of Rahl <button id="R_select" onclick="select('R')">Select</button> <button id="R_deselect" disabled="true" onclick="deselect('R')">Unselect</button>  <br>
+    Solomon's Solar Shield <button id="S_select" onclick="select('S')">Select</button> <button id="S_deselect" disabled="true" onclick="deselect('S')">Unselect</button>  <br>
+    Vaporous Vambrace of Verditius <button id="V_select" onclick="select('V')">Select</button> <button id="V_deselect" disabled="true" onclick="deselect('V')">Unselect</button>  <br>
+    Wicked Wiskeria's Wall of Wailing Winds <button id="W_select" onclick="select('W')">Select</button> <button id="W_deselect" disabled="true" onclick="deselect('W')">Unselect</button>  <br>
+  <button id="calc" onclick="calculate()" disabled="true">Submit</button>
+
+  <div id="detail_text" style="display:none;"></div>
+  <div id="output_text"></div>
+  <div id="story_text"></div>
+  <br>
+  <br>
+  <button id="reset_button" style="visibility:hidden;" onclick="reset()">Reset</button>
+</body>
+
+<script id="jsbin-javascript">
+
+var selected = []
+var spell_list = ["A", "B", "C", "F", "H", "L", "M", "O", "R", "S", "V", "W" ]
+var winrates = {
+ABC : 0.1023,
+ABF : 0.3650,
+ABH : 0.2166,
+ABL : 0.2234,
+ABM : 0.2097,
+ABO : 0.0635,
+ABR : 0.2139,
+ABS : 0.3154,
+ABV : 0.2668,
+ABW : 0.3297,
+ACF : 0.5503,
+ACH : 0.3174,
+ACL : 0.0000,
+ACM : 0.2629,
+ACO : 0.0309,
+ACR : 0.2838,
+ACS : 0.0000,
+ACV : 0.0000,
+ACW : 0.0000,
+AFH : 0.4581,
+AFL : 0.7298,
+AFM : 0.3956,
+AFO : 0.3022,
+AFR : 0.4186,
+AFS : 0.8032,
+AFV : 0.7679,
+AFW : 0.8172,
+AHL : 0.5181,
+AHM : 0.2898,
+AHO : 0.1547,
+AHR : 0.3048,
+AHS : 0.6190,
+AHV : 0.5662,
+AHW : 0.6355,
+ALM : 0.4193,
+ALO : 0.0794,
+ALR : 0.4554,
+ALS : 0.0000,
+ALV : 0.0000,
+ALW : 0.0000,
+AMO : 0.1644,
+AMR : 0.2789,
+AMS : 0.5131,
+AMV : 0.4644,
+AMW : 0.5306,
+AOR : 0.1636,
+AOS : 0.1270,
+AOV : 0.1023,
+AOW : 0.1355,
+ARS : 0.5536,
+ARV : 0.5045,
+ARW : 0.5720,
+ASV : 0.0000,
+ASW : 0.0000,
+AVW : 0.0000,
+BCF : 0.3451,
+BCH : 0.1986,
+BCL : 0.1991,
+BCM : 0.1941,
+BCO : 0.0551,
+BCR : 0.1953,
+BCS : 0.2641,
+BCV : 0.2485,
+BCW : 0.2817,
+BFH : 0.0429,
+BFL : 0.5777,
+BFM : 0.0483,
+BFO : 0.0237,
+BFR : 0.0457,
+BFS : 0.4737,
+BFV : 0.6797,
+BFW : 0.4770,
+BHL : 0.4051,
+BHM : 0.0282,
+BHO : 0.0072,
+BHR : 0.0241,
+BHS : 0.3006,
+BHV : 0.5199,
+BHW : 0.3034,
+BLM : 0.3748,
+BLO : 0.1525,
+BLR : 0.3900,
+BLS : 0.2512,
+BLV : 0.2954,
+BLW : 0.2608,
+BMO : 0.0158,
+BMR : 0.0313,
+BMS : 0.2794,
+BMV : 0.4770,
+BMW : 0.2848,
+BOR : 0.0116,
+BOS : 0.0938,
+BOV : 0.2346,
+BOW : 0.0965,
+BRS : 0.2921,
+BRV : 0.4951,
+BRW : 0.2954,
+BSV : 0.3379,
+BSW : 0.1592,
+BVW : 0.3508,
+CFH : 0.4386,
+CFL : 0.7091,
+CFM : 0.3776,
+CFO : 0.2824,
+CFR : 0.3976,
+CFS : 0.7703,
+CFV : 0.7545,
+CFW : 0.7818,
+CHL : 0.4873,
+CHM : 0.2709,
+CHO : 0.1413,
+CHR : 0.2863,
+CHS : 0.5654,
+CHV : 0.5469,
+CHW : 0.5849,
+CLM : 0.3939,
+CLO : 0.0682,
+CLR : 0.4250,
+CLS : 0.0000,
+CLV : 0.0000,
+CLW : 0.0000,
+CMO : 0.1558,
+CMR : 0.2604,
+CMS : 0.4631,
+CMV : 0.4456,
+CMW : 0.4805,
+COR : 0.1507,
+COS : 0.0963,
+COV : 0.0914,
+COW : 0.1062,
+CRS : 0.5037,
+CRV : 0.4850,
+CRW : 0.5177,
+CSV : 0.0000,
+CSW : 0.0000,
+CVW : 0.0000,
+FHL : 0.6747,
+FHM : 0.0605,
+FHO : 0.0357,
+FHR : 0.0607,
+FHS : 0.5758,
+FHV : 0.7603,
+FHW : 0.5831,
+FLM : 0.5992,
+FLO : 0.5016,
+FLR : 0.6271,
+FLS : 0.7693,
+FLV : 0.8011,
+FLW : 0.7784,
+FMO : 0.0412,
+FMR : 0.0609,
+FMS : 0.5015,
+FMV : 0.6974,
+FMW : 0.5049,
+FOR : 0.0384,
+FOS : 0.3962,
+FOV : 0.6092,
+FOW : 0.4036,
+FRS : 0.5292,
+FRV : 0.7212,
+FRW : 0.5351,
+FSV : 0.8272,
+FSW : 0.6792,
+FVW : 0.8347,
+HLM : 0.4827,
+HLO : 0.3088,
+HLR : 0.5061,
+HLS : 0.5585,
+HLV : 0.6049,
+HLW : 0.5676,
+HMO : 0.0231,
+HMR : 0.0406,
+HMS : 0.3787,
+HMV : 0.5866,
+HMW : 0.3803,
+HOR : 0.0186,
+HOS : 0.2188,
+HOV : 0.4216,
+HOW : 0.2217,
+HRS : 0.4020,
+HRV : 0.6118,
+HRW : 0.4061,
+HSV : 0.6456,
+HSW : 0.4337,
+HVW : 0.6571,
+LMO : 0.3048,
+LMR : 0.4598,
+LMS : 0.4538,
+LMV : 0.5000,
+LMW : 0.4620,
+LOR : 0.3122,
+LOS : 0.0903,
+LOV : 0.1136,
+LOW : 0.0935,
+LRS : 0.4909,
+LRV : 0.5371,
+LRW : 0.5033,
+LSV : 0.0000,
+LSW : 0.0000,
+LVW : 0.0000,
+MOR : 0.0256,
+MOS : 0.2245,
+MOV : 0.4028,
+MOW : 0.2281,
+MRS : 0.3634,
+MRV : 0.5618,
+MRW : 0.3656,
+MSV : 0.5403,
+MSW : 0.3516,
+MVW : 0.5515,
+ORS : 0.2257,
+ORV : 0.4138,
+ORW : 0.2299,
+OSV : 0.1371,
+OSW : 0.0496,
+OVW : 0.1429,
+RSV : 0.5801,
+RSW : 0.3805,
+RVW : 0.5918,
+SVW : 0.0000,
+}
+function select(spell) {
+ selected.push(spell)
+ select_button_id = spell + "_select"
+ deselect_button_id = spell + "_deselect"
+ document.getElementById(select_button_id).disabled = true
+ document.getElementById(deselect_button_id).disabled = false
+ console.log(selected.length)
+ if(selected.length == 3) {
+  document.getElementById("calc").disabled = false
+  for(x in spell_list){
+   x_spell = spell_list[x]
+   n = x_spell + "_select"
+   document.getElementById(n).disabled = true
+  }
+ }
+}
+function deselect(spell) {
+ selected = selected.filter(x => x != spell)
+ select_button_id = spell + "_select"
+ deselect_button_id = spell + "_deselect"
+ document.getElementById(select_button_id).disabled = false
+ document.getElementById(deselect_button_id).disabled = true
+ if(selected.length == 2) {
+  document.getElementById("calc").disabled = true
+  for(x in spell_list){
+   x_spell = spell_list[x]
+   n = x_spell + "_select"
+   document.getElementById(n).disabled = false
+  }
+  for(x in selected){
+   x_spell = selected[x]
+   n = x_spell + "_select"
+   document.getElementById(n).disabled = true
+  }
+ }
+}
+function calculate(){
+ key = ""
+ for(x in spell_list){
+  x_spell = spell_list[x]
+  if(selected.includes(x_spell)){
+   key = key + x_spell
+  }
+ }
+ winrate = winrates[key]
+ console.log(key)
+ console.log(winrate)
+
+ document.getElementById("output_text").innerHTML = "You Lost!"
+ document.getElementById("story_text").innerHTML = "Your master, disappointed, orders you to begin studying Latin conjugations.  'Don't worry,' he says. 'Everyone always thinks they know a faster way at first.  In a decade or two, you'll have learned enough that you can start doing real research!'"
+ if(Math.random() < winrate){
+  document.getElementById("output_text").innerHTML = "You Won!"
+ document.getElementById("story_text").innerHTML = "Your master is quite impressed.  'Perhaps you can explain this mana system of yours in more detail?' he asks.  'I didn't expect such success, but it seems to work quite well!'"
+ }
+ if(winrate == 0){
+  document.getElementById("story_text").innerHTML = "Your master shows up from his duel, half-drenched and half-smoldering, and looking very upset.  'No attack spells at all?' he demands. 'What nonsense is that?  I gave you a chance to demonstrate your method's worth, and instead you embarrass me in front of my peers?  How will I be able to show my face at prestigious magical conferences now?'  He beats you with Corellon's Cruelly Chastising Cane, and throws you out of his tower.  Fortunately, he throws you out of the door rather than the high window.  Unfortunately, he leaves you with a terrible reference that will make it impossible for you to find a new mage to work with."
+ }
+ document.getElementById("output_text").innerHTML = document.getElementById("output_text").innerHTML + " (your win chance was " + winrate * 100 + "%)."
+}
+
+</script>
+    
+</html>
