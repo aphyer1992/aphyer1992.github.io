@@ -117,7 +117,7 @@ function execute_miners() {
   tin_ore = tin_ore + Math.ceil(Math.random() * 3)
   silver_ore = silver_ore + Math.ceil(Math.random() * 3)
  }
- if( (num_miners >= 7) && (has_adamant = true) ) {
+ if( (num_miners >= 7) && (has_adamant == true) ) {
   adamant_ore = adamant_ore + 1
   adamant_thickness = adamant_thickness - 1
   if(adamant_thickness == 0){
@@ -319,6 +319,7 @@ function clean_fort() {
   adamant_thickness = Math.ceil(Math.random() * 20) + 4
  } else { 
   has_adamant = false
+  adamant_thickness = 0
  }
 }
 
