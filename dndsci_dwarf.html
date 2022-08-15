@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Dwarves & D.Sci Evaluator</title>
+</head>
+<body>
+    <button id="miner_decrement" disabled="true" onclick="decrement('miner')">-1</button><span id="miner_count" display="inline">0</span><button id="miner_increment" onclick="increment('miner')">+1</button>Miners<br>
+    <button id="warrior_decrement" disabled="true" onclick="decrement('warrior')">-1</button><span id="warrior_count" display="inline">0</span><button id="warrior_increment" onclick="increment('warrior')">+1</button>Warriors<br>
+    <button id="woodcutter_decrement" disabled="true" onclick="decrement('woodcutter')">-1</button><span id="woodcutter_count" display="inline">0</span><button id="woodcutter_increment" onclick="increment('woodcutter')">+1</button>Woodcutters<br>
+    <button id="smith_decrement" disabled="true" onclick="decrement('smith')">-1</button><span id="smith_count" display="inline">0</span><button id="smith_increment" onclick="increment('smith')">+1</button>Smiths<br>
+    <button id="crafter_decrement" disabled="true" onclick="decrement('crafter')">-1</button><span id="crafter_count" display="inline">0</span><button id="crafter_increment" onclick="increment('crafter')">+1</button>Crafters<br>
+    <button id="farmer_decrement" disabled="true" onclick="decrement('farmer')">-1</button><span id="farmer_count" display="inline">0</span><button id="farmer_increment" onclick="increment('farmer')">+1</button>Farmers<br>
+    <button id="brewer_decrement" disabled="true" onclick="decrement('brewer')">-1</button><span id="brewer_count" display="inline">0</span><button id="brewer_increment" onclick="increment('brewer')">+1</button>Brewers<br>
+  <br>
+Dwarves Left: <div id="dwarves_text">13</div>
+<br>
+<button id="calc_button" onclick="calculate()">Embark!</button>
+</div>
+  <div id="result_text"></div>
+  <div id="story_text"></div>
+  <div id="output_text"></div>
+  <br>
+</body>
+
+<script id="jsbin-javascript">
+
+var dwarves_left = 13
+var profs = [ 'miner', 'warrior', 'woodcutter', 'smith', 'crafter', 'farmer', 'brewer' ]
+var dwarves_chosen = {
+ 'miner' : 0,
+ 'warrior' : 0,
+ 'woodcutter': 0,
+ 'smith' : 0,
+ 'crafter' : 0,
+ 'farmer' : 0,
+ 'brewer' : 0,
+}
+
+var food = 13
+var wood = 0
+var coal = 0
+var value = 0
+var copper_ore = 0
+var iron_ore = 0
+var tin_ore = 0
+var silver_ore = 0
+var adamant_ore = 0
+var exterior_access = true
+var alive = true
+var ending = 'none'
+
+function increment(prof){
+ dwarves_chosen[prof] = dwarves_chosen[prof] + 1
+ span_id = prof + '_count'
+ document.getElementById(span_id).innerHTML = dwarves_chosen[prof]
+ dwarves_left = dwarves_left - 1
+ document.getElementById('dwarves_text').innerHTML = dwarves_left
+ decrement_button_id = prof + '_decrement'
+ document.getElementById(decrement_button_id).disabled = false
+
+ if( dwarves_left == 0 ) {
+  for(index in profs) {
+   increment_button_id = profs[index] + '_increment'
+   document.getElementById(increment_button_id).disabled = true
+  }
+ }
+}
+
+function count_prof(prof) {
+ num_prof = dwarves_chosen[prof]
+ if(dwarves_chosen['brewer'] > 0 ){
+  bonus_rolls = 0
+  bonus_hits = 0
+  while(bonus_rolls < num_prof){
+   bonus_rolls = bonus_rolls + 1
+   if(Math.random() < 0.1){
+    bonus_hits = bonus_hits + 1
+   }
+  }
+  num_prof = num_prof + bonus_hits
+ }
+ return(num_prof)
+}
+
+function execute_warriors() {
+ threat = 1
+ if( Math.random() > 0.5 ){
+  threat = 2
+ }
+ 
+ exterior_access = false
+ if( count_prof('warrior') >= threat ){
+  exterior_access = true
+ }
+}
+
+function execute_woodcutters() {
+ if( exterior_access == true ) {
+  trees = Math.ceil(Math.random()*6) + 3
+  cut = 2 * count_prof('woodcutter')
+  num_cut = Math.min(trees, cut)
+  wood = wood + num_cut
+ } 
+}
+
+function execute_miners() {
+ num_miners = count_prof('miner')
+ if( num_miners >= 1 ) {
+  copper_ore = copper_ore + Math.ceil(Math.random() * 4)
+ }
+ if( num_miners >= 2 ) {
+  iron_ore = iron_ore + Math.ceil(Math.random() * 3)
+ } 
+ if( num_miners >= 3 ) {
+  tin_ore = tin_ore + Math.ceil(Math.random() * 3)
+  silver_ore = silver_ore + Math.ceil(Math.random() * 3)
+ }
+ if( (num_miners >= 7) && (has_adamant = true) ) {
+  adamant_ore = adamant_ore + 1
+  adamant_thickness = adamant_thickness - 1
+  if(adamant_thickness == 0){
+   alive = false
+   ending = 'demons' 
+  }
+ }
+ coal_rolls = 0
+ while( coal_rolls < num_miners ) {
+  coal_rolls = coal_rolls + 1
+  if( Math.random() < 0.1 ) {
+   coal = coal + 1
+  }
+ }
+}
+
+function is_fuel_available() {
+ if( wood > 0 ) {
+  return( true )
+ }
+ if( coal > 0 ) {
+  return( true )
+ }
+ if( ( value >= 3 ) && ( exterior_access == true ) ) {
+  return( true )
+ }
+ return(false)
+}
+
+function spend_fuel() {
+ if( wood > 0 ) {
+  wood = wood - 1
+ } else if( coal > 0 ) {
+  coal = coal - 1
+ } else  if( ( value >= 3 ) && ( exterior_access == true ) ) {
+  value = value - 3
+ } else {
+  throw('AIIIIEEEE!')
+ }
+}
+
+function execute_one_smith() {
+ fuel_available = is_fuel_available()
+ if( ( iron_ore > 0 ) && ( coal > 2 ) ) {
+  coal = coal - 2
+  iron_ore = iron_ore - 1
+  value = value + 20
+ } else if ((fuel_available == true) && (copper_ore > 0) && (tin_ore > 0)) {
+  copper_ore = copper_ore - 1
+  tin_ore = tin_ore - 1
+  spend_fuel()
+  value = value + 10
+ } else if ((fuel_available == true) && (iron_ore > 0)) {
+  iron_ore = iron_ore - 1
+  spend_fuel()
+  value = value + 10
+ } else if ((fuel_available == true) && (copper_ore > 0) ) {
+  copper_ore = copper_ore - 1
+  spend_fuel()
+  value = value + 5
+ } else if ((fuel_available == true) && (tin_ore > 0) ) {
+  tin_ore = tin_ore - 1
+  spend_fuel()
+  value = value + 5
+ }
+}
+
+function execute_one_crafter() {
+ fuel_available = is_fuel_available()
+ if( (fuel_available == true) && (silver_ore > 0) ) {
+  spend_fuel()
+  silver_ore = silver_ore - 1
+  value = value + 10 
+ } else if ( ( wood > 0 ) && ( ( wood > 5 ) || ( exterior_access == true )) ) {
+  wood = wood - 1
+  value = value + 4
+ }
+}
+
+function execute_crafters() {
+ num_crafters = count_prof('crafter')
+ num_executed = 0
+ while( num_executed < num_crafters ) {
+  execute_one_crafter()
+  num_executed = num_executed + 1
+ }
+}
+
+function execute_smiths() {
+ num_smiths = count_prof('smith')
+ num_executed = 0
+ while( num_executed < num_smiths ) {
+  execute_one_smith()
+  num_executed = num_executed + 1
+ }
+}
+function execute_food() {
+ if( exterior_access == true ) {
+  food = food + (count_prof('farmer') * 10) + (count_prof('brewer') * 4)
+ } else {
+  food = food + (count_prof('farmer') * 10) + (count_prof('brewer') * 4)
+ }
+ food = food - 13
+ if( food < 0 ) {
+  value = value + ( 3 * food )
+  food = 0
+  if( value < 0 ) {
+   alive = false
+   ending = 'starve'
+  }
+ }
+}
+
+function execute_turn() {
+ execute_warriors()
+ execute_woodcutters()
+ execute_miners()
+ if(alive == false){
+  return('Dead')
+ }
+ execute_crafters()
+ execute_smiths()
+ execute_food()
+}
+
+function calc_final_value() {
+ value = value + ( 0.1 * food )
+ value = value + ( 0.5 * wood )
+ value = value + ( 1.0 * coal )
+ value = value + ( 1.0 * copper_ore )
+ value = value + ( 1.0 * tin_ore )
+ value = value + ( 3.0 * iron_ore )
+ value = value + ( 3.0 * silver_ore )
+ if( alive == false ) {
+  value = 0
+ } else { 
+  if( value > 500 ) {
+   ending = 'triumph'
+  } else if ( value > 250 ) {
+   ending = 'fair'
+  } else {
+   ending = 'poor'
+  } 
+ }
+}
+
+function execute_fort() {
+ round_no = 1
+ while((alive == true) && (round_no <= 12)){
+  execute_turn()
+  round_no = round_no + 1
+ }
+ calc_final_value()
+}
+
+
+function decrement(prof){
+ dwarves_chosen[prof] = dwarves_chosen[prof] - 1
+ span_id = prof + '_count'
+ document.getElementById(span_id).innerHTML = dwarves_chosen[prof]
+ dwarves_left = dwarves_left + 1
+ document.getElementById('dwarves_text').innerHTML = dwarves_left
+
+ if( dwarves_chosen[prof] == 0 ) {
+  decrement_button_id = prof + '_decrement'
+  document.getElementById(decrement_button_id).disabled = true
+ }
+
+ if( dwarves_left == 1 ) {
+  for(index in profs){
+   increment_button_id = profs[index] + '_increment'
+   document.getElementById(increment_button_id).disabled = false
+  }
+ }
+}
+
+function clean_fort() {
+ food = 13
+ wood = 0
+ coal = 0
+ value = 0
+ exterior_access = true
+ alive = true
+ ending = 'none'
+
+ copper_ore = 0
+ iron_ore = 0
+ tin_ore = 0
+ silver_ore = 0
+ adamant_ore = 0
+
+ if( Math.random() < 0.4 ) {
+  has_adamant = true
+  adamant_thickness = Math.ceil(Math.random() * 20) + 4
+ } else { 
+  has_adamant = false
+ }
+}
+
+function get_ending_text() {
+ if(ending == 'demons') {
+  return("Praise the miners!  You've discovered a rich vein of adamantine in this fort, and you've been mining it for weeks now.  This fantastically-valuable material is rumored to have been placed by Armok Himself, and...wait.  What?  What is that noise?  Oh god!  OH GOD!  THEY'RE EVERYWHERE!  THERE'S SO MUCH BLOOD!  ARMOK PRESERVE US!  NOOOOOOOOOOOOOOOO!")
+ } else if( ending == 'starve' ) {
+  return("Hunger has set in.  Your few dwarves have deserted you through back entrances.  Now you sit alone in the wreckage of your fort, amid the last of your supplies.  You cannot stay here, nor dare you return to the King with your failure.  You must change your name, shave your beard, and leave in shame.")
+ } else if( ending == 'triumph' ) {
+  return("Your fort is a shining example of dwarven civilization!  King Urist himself comes to visit and survey your wealth, and admits that there may be something to this method of yours.  You are appointed Chief Administrator over all such expeditions.")
+ } else if( ending == 'fair' ) {
+  return("Your fort has survived, and prospered respectably.  Even if you haven't impressed the King, your success is at least enough to win you back into your office at Gildedpeaks.")
+ } else if( ending == 'poor' ) {
+  return("While your fort has technically survived, you have failed to generate any substantial wealth.  An order from King Urist dictates that you must stay here, in your miserable hovel with no windows, rather than return to the luxury you once enjoyed.")
+ } else {
+  throw('Unrecognized ending!')
+ }
+}
+
+function write_text() {
+ if( alive ) {
+  result_text = 'Your fort survived, with a value of ' + value
+ } else {
+  result_text = 'Your fort did not survive.'
+ }
+ document.getElementById('result_text').innerHTML = result_text
+ document.getElementById('story_text').innerHTML = get_ending_text()
+ document.getElementById('output_text').innerHTML = 'You had a ' + (survival_chance * 100) + '% chance of surviving, and average value of ' + avg_val
+}
+
+function calculate() {
+ total_val = 0
+ runs = 0
+ survivals = 0
+ while( runs < 100 ) {
+  clean_fort()
+  execute_fort()
+  total_val = total_val + value
+  runs = runs + 1
+  if(alive == true) {
+   survivals = survivals + 1
+  }
+ }
+ avg_val = total_val / runs
+ survival_chance = survivals / runs
+ write_text()
+ console.log(avg_val)
+ console.log(survival_chance)
+ console.log(ending)
+ console.log(value)
+ 
+}
+
+</script>
+    
+</html>
