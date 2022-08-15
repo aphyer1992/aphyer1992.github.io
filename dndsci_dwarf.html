@@ -161,7 +161,11 @@ function spend_fuel() {
 
 function execute_one_smith() {
  fuel_available = is_fuel_available()
- if( ( iron_ore > 0 ) && ( coal > 2 ) ) {
+ if( ( adamant_ore > 0 ) && ( fuel_available == true ) ) {
+  spend_fuel()
+  adamant_ore = adamant_ore - 1
+  value = value + 60
+ } else if( ( iron_ore > 0 ) && ( coal > 2 ) ) {
   coal = coal - 2
   iron_ore = iron_ore - 1
   value = value + 20
@@ -251,6 +255,7 @@ function calc_final_value() {
  value = value + ( 1.0 * tin_ore )
  value = value + ( 3.0 * iron_ore )
  value = value + ( 3.0 * silver_ore )
+ value = value + ( 15.0 * adamant_ore )
  if( alive == false ) {
   value = 0
  } else { 
