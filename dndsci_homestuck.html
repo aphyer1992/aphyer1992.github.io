@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>[S] D&D.Sci Evaluator</title>
+</head>
+<body>
+ Mage of Time <br>
+ Knight of Blood <br>
+ <select id='class1'> <option>Choose a class</option> </select> of <select id='aspect1'> <option>Choose an aspect</option> </select> <br>
+ <select id='class2'> <option>Choose a class</option> </select> of <select id='aspect2'> <option>Choose an aspect</option> </select> <br>	  
+ 
+ <br>  
+ <button id="calc" onclick="calculate()">Submit</button>
+  <br>
+  <div id="output_text"></div>
+  <br>
+  <div id="story_text"></div>
+  <br>
+  <div id="detail_text"></div>
+  <br>
+</body>
+
+<script id="jsbin-javascript">
+
+var selected = []
+var scores = [
+ { "class" : "Knight", "aspect" : "Rage", "combat" : 4, "friendship" : 1, "shenanigans" : 1 },
+ { "class" : "Maid", "aspect" : "Heart", "combat" : 1, "friendship" : 4, "shenanigans" : 1 },
+ { "class" : "Seer", "aspect" : "Time", "combat" : 1, "friendship" : 1, "shenanigans" : 4 },
+ { "class" : "Rogue", "aspect" : "Blood", "combat" : 3, "friendship" : 2, "shenanigans" : 1 },
+ { "class" : "Thief", "aspect" : "Doom", "combat" : 3, "friendship" : 1, "shenanigans" : 2 },
+ { "class" : "Bard", "aspect" : "Breath", "combat" : 2, "friendship" : 3, "shenanigans" : 1 },
+ { "class" : "Sylph", "aspect" : "Life", "combat" : 1, "friendship" : 3, "shenanigans" : 2 },
+ { "class" : "Witch", "aspect" : "Light", "combat" : 2, "friendship" : 1, "shenanigans" : 3 },
+ { "class" : "Mage", "aspect" : "Mind", "combat" : 1, "friendship" : 2, "shenanigans" : 3 },
+ { "class" : "Heir", "aspect" : "Space", "combat" : 2, "friendship" : 2, "shenanigans" : 2 },
+ { "class" : "Prince", "aspect" : "Void", "combat" : 2, "friendship" : 2, "shenanigans" : 2 },
+ { "class" : "Page", "aspect" : "Hope", "combat" : 3, "friendship" : 3, "shenanigans" : 3 },
+]
+
+var stats = [ 'combat', 'friendship', 'shenanigans']
+
+var winrates = [
+ 0,
+ 0,
+ 0,
+ 0,
+ 0.00390625,
+ 0.015625,
+ 0.037597656,
+ 0.070556641,
+ 0.113815308,
+ 0.165725708,
+ 0.224124908,
+ 0.28669548,
+ 0.351221383,
+ 0.415747285,
+ 0.47866004,
+ 0.538713124,
+ 0.59501289,
+ 0.646981905,
+ 0.694310829,
+ 0.736906861,
+ 0.774843952,
+]
+
+var classes = []
+var aspects = []
+
+for( entry in scores) {
+ entry = scores[entry]
+ classes.push(entry.class)
+ aspects.push(entry.aspect)
+}
+
+classes.sort()
+aspects.sort() 
+
+for( c in classes ){
+ c = classes[ c ]
+ option_element = document.createElement("option")
+ option_element.textContent = c
+ option_element.value = c
+ document.getElementById('class1').appendChild(option_element)
+
+ option_element_2 = document.createElement("option")
+ option_element_2.textContent = c
+ option_element_2.value = c
+ document.getElementById('class2').appendChild(option_element_2)
+}
+
+for( a in aspects ){
+ a = aspects[ a ]
+ option_element = document.createElement("option")
+ option_element.textContent = a
+ option_element.value = a
+ document.getElementById('aspect1').appendChild(option_element)
+ option_element_2 = document.createElement("option")
+ option_element_2.textContent = a
+ option_element_2.value = a
+ document.getElementById('aspect2').appendChild(option_element_2)
+}
+
+function get_scores_by_class(c) {
+ for(entry in scores){
+  entry = scores[entry]
+  if(entry.class == c) {
+   return(entry)
+  }
+ }
+ throw('AAIEEEE')
+}
+
+function get_scores_by_aspect(a) {
+ for(entry in scores){
+  entry = scores[entry]
+  if(entry.aspect == a) {
+   return(entry)
+  }
+ }
+ throw('AAUUUUGH')
+}
+
+function get_scores_by_classpect(c,a) {
+ class_scores = get_scores_by_class(c)
+ aspect_scores = get_scores_by_aspect(a)
+ output_struct = {}
+ for( stat in stats){
+  stat = stats[stat]
+  class_stat = class_scores[stat]
+  aspect_stat = aspect_scores[stat]
+  if(c == "Prince" ) {
+   aspect_stat = 4 - aspect_stat
+  }
+  if(a == "Void" ) {
+   class_stat = 4 - class_stat
+  }
+  if(c == "Page" ) {
+   aspect_stat = Math.max( 1, aspect_stat - 1 )
+  }
+  if(a == "Hope" ) {
+   class_stat = Math.max( 1, class_stat - 1 )
+  }
+  output_struct[stat] = class_stat * aspect_stat
+ }
+ return(output_struct)
+}
+
+function calc_output_text(party) {
+ 
+ dupe_problem = 0
+ for( let i = 0; i < 4; i++) {
+  for( let j = i+1; j < 4; j++) {
+   if( party[i].class == 'Choose a class' ) {
+    return(['Please pick classes for all your heroes!', '', ''])
+   }
+   if( party[i].aspect == 'Choose an aspect' ) {
+    return(['Please pick aspects for all your heroes!', '', ''])
+   }
+   if( party[i].class == party[j].class) {
+    return(['You cannot have duplicate classes!', '', ''])
+   }
+   if( party[i].aspect == party[j].aspect) {
+    return(['You cannot have duplicate aspects!', '', ''])
+   }
+  }
+ }
+
+ party_stats = {}
+ for( stat in stats ){
+  party_stats[stats[stat]] = 0
+ }
+ 
+ for(char in party){
+  char = party[char]
+  char_stats = get_scores_by_classpect(char.class, char.aspect)
+  for(stat in stats) {
+   stat = stats[stat]
+   party_stats[stat] = party_stats[stat] + char_stats[stat]
+  }
+ }
+
+ lowest_stat_score = 99999
+ lowest_stat_name = 'None'
+ for( stat in stats) {
+  stat = stats[stat]
+  party_stat = party_stats[stat]
+  if( party_stat < lowest_stat_score ) {
+   lowest_stat_score = party_stat
+   lowest_stat_name = stat
+  }
+ }
+
+ winrate = winrates[lowest_stat_score]
+ if(Math.random() < winrate){
+  return([
+   '<b>You won!</b>', 
+   'You stand triumphant at the brink of your new universe, ready to enter it and claim the ULTIMATE REWARD.  Thanks for playing!',
+   'Your win chance was <b>' + (winrate * 100).toFixed(2) + '%</b>'
+  ])
+ } else  {
+  if(lowest_stat_name == 'combat'){
+   story_txt = 'The Black King is too powerful.  His Ring of Orbs Fourfold shatters your party, and his meteors shatter your world.' 
+  } else if (lowest_stat_name == 'friendship'){
+   story_txt = "Your party is no longer talking with one another.  Ever since your last plan to steal the Black Queen's ring went awry, you've been arguing amongst one another.  You clearly have no hope against the coming Reckoning."
+  } else if (lowest_stat_name == 'shenanigans'){
+   story_txt = 'Everything seemed to go against you from the beginning.  Valuable resources were gone before you ever reached them, your efforts stymied by strange time loops you barely understood and by meteors hitting things you needed.'
+  } else {
+   console.log('AIIIIEEEeeEEEEeee!')
+  }
+  story_txt = story_txt + '  You flee into the Farthest Ring, your session a doomed shambles.  Perhaps you could go back and change the outcome...at the cost of dooming this timeline, and yourself fading away.'
+  return([
+   '<b>You lost!</b>',
+   story_txt,
+   'Your win chance was <b>' + (winrate * 100).toFixed(2) + '%</b>'
+  ])
+ }
+}
+
+function calculate(){
+ party = [ {'class' : 'Mage', 'aspect' : 'Time'}, {'class' : 'Knight', 'aspect' : 'Blood'}]
+ party.push({'class' : document.getElementById('class1').value, 'aspect' : document.getElementById('aspect1').value})
+ party.push({'class' : document.getElementById('class2').value, 'aspect' : document.getElementById('aspect2').value})
+ texts = calc_output_text(party)
+ output_txt = texts[0]
+ story_txt = texts[1]
+ detail_txt = texts[2]
+ console.log(output_txt)
+ console.log(story_txt)
+ console.log(detail_txt)
+ document.getElementById('output_text').innerHTML = output_txt
+ document.getElementById('story_text').innerHTML = story_txt
+ document.getElementById('detail_text').innerHTML = detail_txt
+}
+</script>
+    
+</html>
