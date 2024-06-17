@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>D&D.Sci 5E Evaluator</title>
+</head>
+<body>
+    <div>Badger Skull<button id="select_1" onclick="select('Badger Skull')">Select</button> <button id="deselect_1" disabled="true" onclick="deselect('Badger Skull')">Unselect</button>  </div>
+    <div>Beech Bark<button id="select_2" onclick="select('Beech Bark')">Select</button> <button id="deselect_2" disabled="true" onclick="deselect('Beech Bark')">Unselect</button>  </div>
+    <div>Crushed Diamond<button id="select_3" onclick="select('Crushed Diamond')">Select</button> <button id="deselect_3" disabled="true" onclick="deselect('Crushed Diamond')">Unselect</button>  </div>
+    <div>Crushed Onyx<button id="select_4" onclick="select('Crushed Onyx')">Select</button> <button id="deselect_4" disabled="true" onclick="deselect('Crushed Onyx')">Unselect</button>  </div>
+    <div>Demon Claw<button id="select_5" onclick="select('Demon Claw')">Select</button> <button id="deselect_5" disabled="true" onclick="deselect('Demon Claw')">Unselect</button>  </div>
+    <div>Giant's Toe<button id="select_6" onclick="select('Giant Toe')">Select</button> <button id="deselect_6" disabled="true" onclick="deselect('Giant Toe')">Unselect</button>  </div>
+    <div>Ground Bone<button id="select_7" onclick="select('Ground Bone')">Select</button> <button id="deselect_7" disabled="true" onclick="deselect('Ground Bone')">Unselect</button>  </div>
+    <div>Oaken Twigs<button id="select_8" onclick="select('Oaken Twigs')">Select</button> <button id="deselect_8" disabled="true" onclick="deselect('Oaken Twigs')">Unselect</button>  </div>
+    <div>Quicksilver<button id="select_9" onclick="select('Quicksilver')">Select</button> <button id="deselect_9" disabled="true" onclick="deselect('Quicksilver')">Unselect</button>  </div>
+    <div>Redwood Sap<button id="select_10" onclick="select('Redwood Sap')">Select</button> <button id="deselect_10" disabled="true" onclick="deselect('Redwood Sap')">Unselect</button>  </div>
+    <div>Troll Blood<button id="select_11" onclick="select('Troll Blood')">Select</button> <button id="deselect_11" disabled="true" onclick="deselect('Troll Blood')">Unselect</button>  </div>
+    <div>Vampire Fang<button id="select_12" onclick="select('Vampire Fang')">Select</button> <button id="deselect_12" disabled="true" onclick="deselect('Vampire Fang')">Unselect</button>  </div>
+
+      <button id="calc" onclick="calculate()">Submit</button>
+
+  <div id="output_text"></div>
+  <br>
+  <div id="detail_text"></div>
+  <br>  
+  <div id="story_text"></div>
+  <br>
+  <br>
+</body>
+
+<script id="jsbin-javascript">
+
+var selected = []
+var ingredient_list = [
+"Badger Skull",
+"Beech Bark",
+"Crushed Diamond",
+"Crushed Onyx",
+"Demon Claw",
+"Giant Toe",
+"Ground Bone",
+"Oaken Twigs",
+"Quicksilver",
+"Redwood Sap",
+"Troll Blood",
+"Vampire Fang",
+]
+
+function select(ingredient) {
+ selected.push(ingredient)
+ ingredient_index = ingredient_list.indexOf(ingredient) + 1
+ select_button_id = "select_" + ingredient_index
+ deselect_button_id = "deselect_" + ingredient_index
+ document.getElementById(select_button_id).disabled = true
+ document.getElementById(deselect_button_id).disabled = false
+}
+function deselect(ingredient) {
+ selected = selected.filter(x => x != ingredient)
+ ingredient_index = ingredient_list.indexOf(ingredient) + 1
+ select_button_id = "select_" + ingredient_index
+ deselect_button_id = "deselect_" + ingredient_index
+ document.getElementById(select_button_id).disabled = false
+ document.getElementById(deselect_button_id).disabled = true
+}
+function calculate(){
+ power = 0
+ probabilities = [0,0,0,0,0,0,0,0,0] // inert glop, magical explosion, acidic slurry, mutagenic ooze, 'barkskin potion', 'necromantic power potion', 'rage potion', 'growth potion', 'regeneration potion'
+ results = [ 'Inert Glop', 'Magical Explosion', 'Acidic Slurry', 'Mutagenic Ooze', "'Barkskin Potion'", "'Necromantic Power Potion'", 'Rage Potion', 'Growth Potion', 'Regeneration Potion']
+ potion_prob =1
+ if(selected.includes('Demon Claw')) {
+  power = power + 1
+ }
+ if(selected.includes('Giant Toe')) {
+  power = power + 1
+ }
+ if(selected.includes('Troll Blood')) {
+  power = power + 1
+ }
+ if(selected.includes('Vampire Fang')) {
+  power = power + 1
+ }
+ if(power == 4) {
+  probabilities[1] = 0.5
+  potion_prob = 0.5
+ }
+ if(power == 2) {
+  probabilities[0] = 0.5
+  potion_prob = 0.5
+ }
+ if(power <= 1) {
+  probabilities[0] = 1
+  potion_prob = 0
+ }
+ potion_hits = []
+ if(selected.includes('Crushed Onyx') && selected.includes('Ground Bone')){
+  potion_hits.push(4)
+ }
+ if(selected.includes('Beech Bark') && selected.includes('Oaken Twigs')){
+  potion_hits.push(5)
+ }
+ if(selected.includes('Badger Skull') && selected.includes('Demon Claw')){
+  potion_hits.push(6)
+ }
+ if(selected.includes('Giant Toe') && selected.includes('Redwood Sap')){
+  potion_hits.push(7)
+ }
+ if(selected.includes('Troll Blood') && selected.includes('Vampire Fang')){
+  potion_hits.push(8)
+ }
+ if(potion_hits.length == 0) {
+  probabilities[2] = potion_prob
+  potion_prob = 0
+ }
+ if( potion_hits.length > 1) {
+  probabilities[3] = potion_prob * (potion_hits.length - 1) / potion_hits.length
+  potion_prob = potion_prob / potion_hits.length
+ }
+ for(h of potion_hits) {
+  probabilities[h] = potion_prob / potion_hits.length
+ }
+ console.log(probabilities)
+ probability_string = "Your odds were:<br>"
+ console.log(probability_string)
+ i = 0
+ while( i < probabilities.length) {
+  if(probabilities[i] > 0) {
+   probability_string = probability_string + (probabilities[i] * 100)
+   console.log(probability_string)
+   probability_string = probability_string + "% chance of making " 
+   console.log(probability_string)
+   probability_string = probability_string + results[i] + "<br>"
+   console.log(probability_string)
+  }
+  i = i + 1
+ }
+ console.log(probability_string)
+ document.getElementById("detail_text").innerHTML = probability_string
+ winrate = probabilities[4]
+ rng = Math.random()
+ console.log(rng)
+ index = -1
+ while(index < 10) {
+  index = index + 1
+  rng = rng - probabilities[index]
+  if(rng <= 0) {
+   result = index
+   result_string = results[index]
+   console.log(result_string)
+   document.getElementById("output_text").innerHTML = 'You brewed ' + result_string
+   break
+  }
+ }
+ if(result < 4) {
+  story_text = "'You fool!  Your folly has wrought grevious harm upon the world!'  "
+  story_text = story_text + "It seems that your recipe actually resulted in a " + result_string + ", rather than any potion at all.  "
+  story_text = story_text + "Archmage Anachronos seems to think will cause a large problem.  You think this is probably just him being dramatic.  You hope.  You guess."
+ }
+ if(result == 4) {
+  story_text = "The next time you see Archmage Anachronos, he thanks you for your help.  He was able to brew a Barkskin Potion as planned, which was very helpful.  "
+  story_text = story_text + "Unfortunately, he doesn't have much time to chat.  During the recent planetary alignment, a new Lich Lord moved into the Loathsome Lich's abandoned lair and carried out a necromantic ascension ritual.  "
+  story_text = story_text + "Now he needs to prepare wards against the risk of assault by the Dread Lich Mal'Kronos.  Don't worry, he's sure it'll be fine, and he'll call you if he needs more Data Science help!"
+ }
+ if(result == 5) {
+  story_text = "You don't see Archmage Anachronos for a while.  Eventually, you go to his laboratory to check on him.  "
+  story_text = story_text + "There's a note on his desk.  You take a look and read it.  "
+  story_text = story_text +  "'Your arts are too mighty for me.  My puny deceptions are no match for the power of Data Science.  I admit my defeat, and beg that you accept my surrender and pursue me no further.'  "
+  story_text = story_text + "Beside the note rests a cauldron of perfectly-made Barkskin Potion.  "
+ }
+ if(result == 6 || result == 7) {
+  story_text = "'You fool!  Your folly has wrought grevious harm upon the world!'  "
+  story_text = story_text + "It seems that your recipe actually resulted in a " + result_string + ", rather than the desire Barkskin Potion.  "
+  story_text = story_text + "Archmage Anachronos seems to think will cause a large problem.  You think this is probably just him being dramatic.  You hope.  You guess."
+ }
+ if(result == 8) {
+  story_text = "'You fool!  Look what you have done!'  "
+  story_text = story_text + "It seems that your recipe actually resulted in a " + result_string + ", rather than the desired Barkskin Potion.  "
+  story_text = story_text + "'Do you know what would have happened if I had drunk this?  I would have...uh...regenerated.  Yes.  Regenerated.  And that would be bad.'  "
+  story_text = story_text + "Archmage Anachronos seems to think this will cause a large problem.  You think this is probably just him being dramatic.  You hope.  You guess."
+ }
+ document.getElementById("story_text").innerHTML = story_text
+}
+
+</script>
+    
+</html>
