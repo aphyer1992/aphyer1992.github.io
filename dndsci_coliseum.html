@@ -124,9 +124,9 @@ function get_story_text(wins, bonus_score) {
  else {
   story_text = story_text + "You are sent away in shame, and gather up with your companions to discuss what else you can do to seek aid against the Demon King.<br><br>"
   if(bonus_score == -1) { 
-   dead_pronouns = ["he", "him"]
-   if(female_companions.includes(used_greaves)){dead_pronouns = ["she", "her"]}
-   story_text = story_text + "As you talk, " + used_greaves + " suddenly gasps, holding a hand to " + dead_pronouns[1] + " chest.  Before your eyes, she collapses on the ground, a blade through her heart.  From the shadows behind her, the figure of House Cadagal's champion takes shape.<br><br>As your companions reach for their weapons, he only laughs.  'This isn't an arena where I need to face you head-on, thieves.  Run as far as you wish, you cannot flee our wrath.'  He disappears into the shadows, " + used_greaves + "'s corpse disappearing with him.<br><br>"
+   dead_pronouns = ["he", "him", "his"]
+   if(female_companions.includes(used_greaves)){dead_pronouns = ["she", "her", "her"]}
+   story_text = story_text + "As you talk, " + used_greaves + " suddenly gasps, holding a hand to " + dead_pronouns[2] + " chest.  Before your eyes, " + dead_pronouns[0] + " collapses on the ground, a blade through " + dead_pronouns[2] + " heart.  From the shadows behind " + dead_pronouns[1] + ", the figure of House Cadagal's champion takes shape.<br><br>As your companions reach for their weapons, he only laughs.  'This isn't an arena where I need to face you head-on, thieves.  Run as far as you wish, you cannot flee our wrath.'  He disappears into the shadows, " + used_greaves + "'s corpse disappearing with him.<br><br>"
   }
   if(bonus_score == 1) {
    story_text = story_text + "As you talk, a shadowy figure suddenly appears in the room.  Your companions draw their weapons, but he holds his hands up peacefully - it's Cadagal's Champion from the earlier combats.  He explains that, while House Cadagal cannot be seen to support you after your failure, they nevertheless owe you a great debt, and he promises whatever aid you may need in future.<br><br>"
