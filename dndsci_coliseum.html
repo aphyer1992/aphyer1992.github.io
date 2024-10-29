@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>D&D.Sci Coliseum Evaluator</title>
+</head>
+<body>
+
+<br> House Adelon: send <select id='companionA'> <option>Choose a companion</option> </select> with <select id='bootsA'> <option>no</option> </select> boots and <select id='gauntletsA'> <option>no</option> </select> gauntlets
+<br> House Bauchard: send <select id='companionB'> <option>Choose a companion</option> </select> with <select id='bootsB'> <option>no</option> </select> boots and <select id='gauntletsB'> <option>no</option> </select> gauntlets
+<br> House Cadagal: send <select id='companionC'> <option>Choose a companion</option> </select> with <select id='bootsC'> <option>no</option> </select> boots and <select id='gauntletsC'> <option>no</option> </select> gauntlets
+<br> House Deepwrack: send <select id='companionD'> <option>Choose a companion</option> </select> with <select id='bootsD'> <option>no</option> </select> boots and <select id='gauntletsD'> <option>no</option> </select> gauntlets
+ 
+ <br>  
+ <br>  
+ <button id="calc" onclick="calculate()">Submit</button>
+ <br>
+  <br>
+  <div id="bonus_entry"></div>  
+  <button id="bonus_calc" onclick="bonus_calculate()">To The Fight</button>
+  <br>
+  <div id="output_text"></div>
+  <br>
+  <div id="story_text"></div>
+  <br>
+  <div id="detail_text"></div>
+  <br>
+</body>
+
+<script id="jsbin-javascript">
+
+document.getElementById('bonus_calc').style.visibility = "hidden"
+var companions = [ 'Uzben', 'Varina', 'Willow', 'Xerxes', 'Yalathinel', 'Zelaya' ]
+var female_companions = [ 'Varina', 'Willow', 'Zelaya' ]
+var companion_stats = {
+'Uzben': [14, 10],
+'Varina': [6, 18],
+'Willow': [11, 13],
+'Xerxes':  [13, 11],
+'Yalathinel': [18, 6],
+'Zelaya': [11, 15],
+}
+var houses = [ 'A', 'B', 'C', 'D' ]
+var house_stats = {
+ 'A': [13, 17],
+ 'B': [11, 20],
+ 'C': [24, 9],
+ 'D': [14, 17],
+}
+var boots = ['+1', '+2', '+3', '+4']
+var gauntlets = ['+1', '+2', '+3']
+var actual_wins = 0 // needed elsewhere
+var used_greaves = ""
+var bonus_house_chosen = 0
+var bonus_subject_chosen = 0
+
+for( h in houses) {
+ h = houses[h]
+ for( c in companions ){
+  c = companions[ c ]
+  option_element = document.createElement("option")
+  option_element.textContent = c
+  option_element.value = c
+  document.getElementById('companion' + h).appendChild(option_element)
+ }
+ for( b in boots ){
+  b = boots[b]
+  option_element = document.createElement("option")
+  option_element.textContent = b
+  option_element.value = b
+  document.getElementById('boots' + h).appendChild(option_element)
+ }
+ for( g in gauntlets ){
+  g = gauntlets[g]
+  option_element = document.createElement("option")
+  option_element.textContent = g
+  option_element.value = g
+  document.getElementById('gauntlets' + h).appendChild(option_element)
+ }
+}
+
+function get_winrate(power_diff) {
+ wins = 0
+ losses = 0
+ for(let i=1;i<=6;i++)
+ {
+  for(let j=1;j<=6;j++)
+  {
+    res = power_diff + i - j
+	if(res > 0) {wins = wins + 1}
+	else if(res < 0) {losses = losses + 1}
+	else {
+	 wins = wins + 0.5
+	 losses = losses + 0.5
+	}
+  } 
+ }
+ return(wins / (wins + losses))
+}
+
+function get_story_text(wins, bonus_score) {
+ win_words = {
+  0: ["openly mock", "dismal"],
+  1: ["sneer at", "poor"],
+  2: ["grudgingly accept", "acceptable"],
+  3: ["are impressed by", "very good"],
+  4: ["are stunned by", "amazing"]
+ }
+ story_text = "The Great Houses " + win_words[wins][0] + " your " + win_words[wins][1] + " performance.<br><br>"
+ 
+ if(wins >= 2) {
+  story_text = story_text + "You are invited up to discuss the aid they can offer you against the Demon King, and greeted by the heads of the Four Great Houses.<br><br>"
+  if(bonus_score == -1) {
+   story_text = story_text + "Most of them seem happy to meet you, and have brought their Champions along to laugh and cheerfully describe the fights over dinner while they discuss what can be done about the Demon King.  The Lady Cadagal seems less happy - she's glaring at you, and her Champion seems completely absent.  You're sure it's nothing to worry about, though.<br><br>"
+  }
+  else {
+   story_text = story_text + "They seem happy to meet you, and have brought their Champions along to laugh and cheerfully describe the fights over dinner while they discuss what can be done about the Demon King.<br><br>"
+   if(bonus_score == 1) {
+    story_text = story_text + "The Lady Cadagal in particular backs you strongly, pressing them to provide as much support as they can manage.<br><br>"
+   }
+  }
+ }
+ else {
+  story_text = story_text + "You are sent away in shame, and gather up with your companions to discuss what else you can do to seek aid against the Demon King.<br><br>"
+  if(bonus_score == -1) { 
+   dead_pronouns = ["he", "him"]
+   if(female_companions.includes(used_greaves)){dead_pronouns = ["she", "her"]}
+   story_text = story_text + "As you talk, " + used_greaves + " suddenly gasps, holding a hand to " + dead_pronouns[1] + " chest.  Before your eyes, she collapses on the ground, a blade through her heart.  From the shadows behind her, the figure of House Cadagal's champion takes shape.<br><br>As your companions reach for their weapons, he only laughs.  'This isn't an arena where I need to face you head-on, thieves.  Run as far as you wish, you cannot flee our wrath.'  He disappears into the shadows, " + used_greaves + "'s corpse disappearing with him.<br><br>"
+  }
+  if(bonus_score == 1) {
+   story_text = story_text + "As you talk, a shadowy figure suddenly appears in the room.  Your companions draw their weapons, but he holds his hands up peacefully - it's Cadagal's Champion from the earlier combats.  He explains that, while House Cadagal cannot be seen to support you after your failure, they nevertheless owe you a great debt, and he promises whatever aid you may need in future.<br><br>"
+  }
+ }
+ return(story_text)
+}
+
+function resolve_bonus() {
+ if(document.getElementById('bonus_house').innerHTML == 'Cadagal' && document.getElementById('bonus_subject').innerHTML == 'return an item') {
+  new_text = "The Lady Cadagal stares in shock.  'These...these are the Shadow Greaves.  Our House's famed heirloom, stolen by thieves lately to our great shame...and now, returned by you.'  She bows deeply.  'House Cadagal owes you a great debt, Hero.  I will not forget it.'"
+ }
+ else {
+  new_text = "Nothing particularly comes of it, and you head over to the Arena for the fights."
+ }
+ console.log(new_text)
+ document.getElementById('bonus_entry').innerHTML = document.getElementById('bonus_entry').innerHTML + "<br><br>" + new_text
+}
+
+function set_bonus_house(h) {
+ h = ["Adelon", "Bauchard", "Cadagal", "Deepwrack"][h]
+ document.getElementById('bonus_house').innerHTML = h
+ bonus_house_chosen = 1
+ if(bonus_subject_chosen){resolve_bonus()}
+}
+
+function set_bonus_subject(s) {
+ subjects = [ "pass on a message", "return an item", "look for Demonic corruption" ]
+ s = subjects[s]
+ document.getElementById('bonus_subject').innerHTML = s
+ bonus_subject_chosen = 1
+ if(bonus_house_chosen){resolve_bonus()}
+}
+
+function setup_bonus() {
+ bonus_house_chosen = 0
+ bonus_subject_chosen = 0
+ bonus_html = "Before the tournament starts, you consider visiting House <span id='bonus_house'>"
+ bonus_html = bonus_html + "<button id='bonusHouseA' onclick='set_bonus_house(0)'>Adelon</button>"
+ bonus_html = bonus_html + "<button id='bonusHouseB' onclick='set_bonus_house(1)'>Bauchard</button>"
+ bonus_html = bonus_html + "<button id='bonusHouseC' onclick='set_bonus_house(2)'>Cadagal</button>"
+ bonus_html = bonus_html + "<button id='bonusHouseD' onclick='set_bonus_house(3)'>Deepwrack</button>"
+ bonus_html = bonus_html + "</span>"
+ bonus_html = bonus_html + " in order to <span id='bonus_subject'>"
+ bonus_html = bonus_html + "<button id='bonusSubjectM' onclick='set_bonus_subject(0)'>pass on a message</button>"
+ bonus_html = bonus_html + "<button id='bonusSubjectI' onclick='set_bonus_subject(1)'>return an item</button>"
+ bonus_html = bonus_html + "<button id='bonusSubjectD' onclick='set_bonus_subject(2)'>look for Demonic corruption</button>"
+ bonus_html = bonus_html + "</span>."
+ document.getElementById('bonus_entry').innerHTML = bonus_html
+ 
+ document.getElementById('bonus_entry').style.visibility = ""
+ document.getElementById('bonus_calc').style.visibility = ""
+}
+
+function bonus_calculate() {
+ bonus_score = 0
+ if(document.getElementById('bonus_house').innerHTML == 'Cadagal' && document.getElementById('bonus_subject').innerHTML == 'return an item') {
+  bonus_score = 1
+ }
+ document.getElementById('story_text').innerHTML = get_story_text(actual_wins, bonus_score)
+ document.getElementById('output_text').style.visibility = ""
+ document.getElementById('story_text').style.visibility = ""
+ document.getElementById('detail_text').style.visibility = ""
+}
+
+function calculate(){
+ document.getElementById('bonus_entry').style.visibility = "hidden"
+ document.getElementById('bonus_calc').style.visibility = "hidden"
+ document.getElementById('output_text').style.visibility = "hidden"
+ document.getElementById('story_text').style.visibility = "hidden"
+ document.getElementById('detail_text').style.visibility = "hidden"
+ expected_wins = 0
+ actual_wins = 0
+ used_companions = []
+ used_boots = []
+ used_gauntlets = []
+ output_txt = ""
+ error_txt = ""
+ is_error = false
+ 
+ for( h in houses ) {
+  h = houses[h]
+  companion = document.getElementById('companion'+h).value
+  console.log(companion)
+  if(!companions.includes(companion)) {
+   is_error = true
+   error_txt = "You need to select a companion for each House!"
+   break
+  }
+  if(used_companions.includes(companion)){
+   is_error = true
+   error_txt = error_txt + "<br>You have used the companion " + companion + " more than once!"
+   break
+  }
+  used_companions.push(companion)
+  boots = document.getElementById('boots'+h).value
+  if(used_boots.includes(boots) && boots != "no"){
+   is_error = true
+   error_txt = error_txt + "<br>You have used the boots " + boots + " more than once!"
+   break
+  }
+  used_boots.push(boots)
+  if(boots == "+4"){used_greaves = companion}
+  gauntlets = document.getElementById('gauntlets'+h).value
+  if(used_gauntlets.includes(gauntlets) && gauntlets != "no"){
+   is_error = true
+   error_txt = error_txt + "<br>You have used the gauntlets " + gauntlets + " more than once!"
+   break
+  }
+  used_gauntlets.push(gauntlets)
+  companion_speed = companion_stats[companion][0]
+  if(boots != 'no') {
+   companion_speed = companion_speed + parseInt(boots)
+  }
+  companion_power = companion_stats[companion][1]
+  if(gauntlets != 'no') {
+   companion_power = companion_power + parseInt(gauntlets)
+  }
+  house_speed = house_stats[h][0]
+  house_power = house_stats[h][1]
+  power_diff = companion_power - house_power
+  if(companion_speed > house_speed) { power_diff = power_diff + 8 }
+  if(companion_speed < house_speed) { power_diff = power_diff - 8 }
+  winrate = get_winrate(power_diff)
+  console.log("power diff and winrate vs " + h)
+  console.log(power_diff)
+  console.log(winrate)
+  output_txt = output_txt + "<br>" + companion + " challenges House " + h + "'s Champion..."
+  expected_wins = expected_wins + winrate
+  if( Math.random() < winrate) {
+   actual_wins = actual_wins + 1
+   output_txt = output_txt + "and wins!"
+  }
+  else {
+   output_txt = output_txt + "and loses."
+  }
+ }
+ console.log(output_txt)
+ console.log(error_txt)
+ console.log(is_error)
+ if(is_error) {
+  document.getElementById('output_text').innerHTML = error_txt 
+  document.getElementById('output_text').style.visibility = ""
+ }
+ else {
+  document.getElementById('output_text').innerHTML = output_txt
+  document.getElementById('detail_text').innerHTML = "Your expected number of wins was " + (Math.round(expected_wins * 100) / 100).toFixed(2) + "/4"
+  if(used_boots.includes("+4")) {
+   document.getElementById('story_text').innerHTML = get_story_text(actual_wins, -1)
+   document.getElementById('output_text').style.visibility = ""
+   document.getElementById('story_text').style.visibility = ""
+   document.getElementById('detail_text').style.visibility = ""
+  }
+  else {
+   setup_bonus()
+  }
+ }
+}
+</script>
+    
+</html>
