@@ -247,11 +247,11 @@ function stringify_tax(tax) {
 }
 
 function set_output_text(a_tax, b_tax, c_tax, d_tax, total_tax) {
-	text = "The Archmage pays " + a_tax + ".<br>"
-	text = text + "The Barbarian pays " + b_tax + ".<br>"
-	text = text + "The Cleric pays " + c_tax + ".<br>"
-	text = text + "The Dagger Guy pays " + d_tax + ".<br><br>"
-	text = text + "Total Tax is " + total_tax + ".<br>"
+	text = "The Archmage pays " + stringify_tax(a_tax) + ".<br>"
+	text = text + "The Barbarian pays " + stringify_tax(b_tax) + ".<br>"
+	text = text + "The Cleric pays " + stringify_tax(c_tax) + ".<br>"
+	text = text + "The Dagger Guy pays " + stringify_tax(d_tax) + ".<br><br>"
+	text = text + "Total Tax is " + stringify_tax(total_tax) + ".<br>"
 	
 	document.getElementById("output_text").innerHTML = text
 }
@@ -305,9 +305,7 @@ function calculate(){
 	validation_error = validate(a_goods, b_goods, c_goods, d_goods)
 	
 	document.getElementById("output_text").innerHTML = validation_error
-	console.log(validation_error)
 	if(validation_error == "") {
-		console.log("poke")
 		a_tax = score_goods(a_goods)
 		b_tax = score_goods(b_goods)
 		c_tax = score_goods(c_goods)
